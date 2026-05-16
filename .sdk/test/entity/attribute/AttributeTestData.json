@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "attribute": {
+      "ATTRIBUTE00": {
+        "description": "s1e",
+        "name": "s1f",
+        "type": "s20"
+      },
+      "ATTRIBUTE01": {
+        "description": "s3c",
+        "name": "s3d",
+        "type": "s3e"
+      },
+      "ATTRIBUTE02": {
+        "description": "s5a",
+        "name": "s5b",
+        "type": "s5c"
+      }
+    }
+  },
+  "new": {
+    "attribute": {
+      "attribute_ref01": {
+        "description": "s78",
+        "name": "s79",
+        "type": "s7a"
+      }
+    }
+  }
+}

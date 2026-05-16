@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "asset": {
+      "ASSET00": {
+        "geometry": {},
+        "id": "ASSET00",
+        "property": {},
+        "type": "s2b"
+      },
+      "ASSET01": {
+        "geometry": {},
+        "id": "ASSET01",
+        "property": {},
+        "type": "s53"
+      },
+      "ASSET02": {
+        "geometry": {},
+        "id": "ASSET02",
+        "property": {},
+        "type": "s7b"
+      }
+    }
+  },
+  "new": {
+    "asset": {
+      "asset_ref01": {
+        "geometry": {},
+        "property": {},
+        "type": "sa3"
+      }
+    }
+  }
+}

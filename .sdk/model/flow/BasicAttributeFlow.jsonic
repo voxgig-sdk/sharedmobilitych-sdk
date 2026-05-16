@@ -1,0 +1,22 @@
+# BasicAttributeFlow
+
+main: kit: flow: BasicAttributeFlow:
+{
+  entity: "attribute",
+  kind: "basic",
+  name: "BasicAttributeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "attribute_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAttributeFlow"
+}

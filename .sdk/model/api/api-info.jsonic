@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "geoinformation@bfe.admin.ch"
+      }
+      description: "Access sharedmobility.ch data via RESTful API. The sharedmobility.ch platform is Switzerland's national shared mobility platform showing location and availability of all participating shared mobility providers. The data encompasses various mobility service providers including cars, scooters, bikes and more, available as Open Data."
+      license: {
+        name: "Open Data"
+        url: "https://opendata.swiss/en/dataset/standorte-und-verfugbarkeit-von-shared-mobility-angeboten"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://sharedmobility.ch/api"
+        }
+      ]
+      title: "sharedmobility.ch API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

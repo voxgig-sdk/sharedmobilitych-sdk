@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "provider": {
+      "PROVIDER00": {
+        "contact": {},
+        "coverage_area": [],
+        "id": "PROVIDER00",
+        "name": "s3f",
+        "type": [],
+        "website": "s41"
+      },
+      "PROVIDER01": {
+        "contact": {},
+        "coverage_area": [],
+        "id": "PROVIDER01",
+        "name": "s7b",
+        "type": [],
+        "website": "s7d"
+      },
+      "PROVIDER02": {
+        "contact": {},
+        "coverage_area": [],
+        "id": "PROVIDER02",
+        "name": "sb7",
+        "type": [],
+        "website": "sb9"
+      }
+    }
+  },
+  "new": {
+    "provider": {
+      "provider_ref01": {
+        "contact": {},
+        "coverage_area": [],
+        "name": "sf3",
+        "type": [],
+        "website": "sf5"
+      }
+    }
+  }
+}

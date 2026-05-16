@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "search": {
+      "SEARCH00": {
+        "geometry": {},
+        "id": "SEARCH00",
+        "property": {},
+        "type": "s2b"
+      },
+      "SEARCH01": {
+        "geometry": {},
+        "id": "SEARCH01",
+        "property": {},
+        "type": "s53"
+      },
+      "SEARCH02": {
+        "geometry": {},
+        "id": "SEARCH02",
+        "property": {},
+        "type": "s7b"
+      }
+    }
+  },
+  "new": {
+    "search": {
+      "search_ref01": {
+        "geometry": {},
+        "property": {},
+        "type": "sa3"
+      }
+    }
+  }
+}
