@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/sharedmobilitych-sdk/core"
+	"github.com/voxgig-sdk/sharedmobilitych-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/sharedmobilitych-sdk/go/utility/struct"
 )
 
 type SearchEntity struct {

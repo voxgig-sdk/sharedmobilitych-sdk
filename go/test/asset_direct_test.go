@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/sharedmobilitych-sdk"
-	"github.com/voxgig-sdk/sharedmobilitych-sdk/core"
+	sdk "github.com/voxgig-sdk/sharedmobilitych-sdk/go"
+	"github.com/voxgig-sdk/sharedmobilitych-sdk/go/core"
 )
 
 func TestAssetDirect(t *testing.T) {

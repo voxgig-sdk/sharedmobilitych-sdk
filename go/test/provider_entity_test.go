@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/sharedmobilitych-sdk"
-	"github.com/voxgig-sdk/sharedmobilitych-sdk/core"
+	sdk "github.com/voxgig-sdk/sharedmobilitych-sdk/go"
+	"github.com/voxgig-sdk/sharedmobilitych-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/sharedmobilitych-sdk/go/utility/struct"
 )
 
 func TestProviderEntity(t *testing.T) {

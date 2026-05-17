@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/sharedmobilitych-sdk/core"
+	"github.com/voxgig-sdk/sharedmobilitych-sdk/go/core"
 )
 
 type BaseFeature struct {

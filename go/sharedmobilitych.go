@@ -1,10 +1,10 @@
 package voxgigsharedmobilitychsdk
 
 import (
-	"github.com/voxgig-sdk/sharedmobilitych-sdk/core"
-	"github.com/voxgig-sdk/sharedmobilitych-sdk/entity"
-	"github.com/voxgig-sdk/sharedmobilitych-sdk/feature"
-	_ "github.com/voxgig-sdk/sharedmobilitych-sdk/utility"
+	"github.com/voxgig-sdk/sharedmobilitych-sdk/go/core"
+	"github.com/voxgig-sdk/sharedmobilitych-sdk/go/entity"
+	"github.com/voxgig-sdk/sharedmobilitych-sdk/go/feature"
+	_ "github.com/voxgig-sdk/sharedmobilitych-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
