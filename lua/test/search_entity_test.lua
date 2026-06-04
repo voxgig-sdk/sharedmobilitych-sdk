@@ -92,7 +92,6 @@ function search_basic_setup(extra)
     ["SHAREDMOBILITYCH_TEST_SEARCH_ENTID"] = idmap,
     ["SHAREDMOBILITYCH_TEST_LIVE"] = "FALSE",
     ["SHAREDMOBILITYCH_TEST_EXPLAIN"] = "FALSE",
-    ["SHAREDMOBILITYCH_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function search_basic_setup(extra)
   if env["SHAREDMOBILITYCH_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["SHAREDMOBILITYCH_APIKEY"],
       },
       extra or {},
     })

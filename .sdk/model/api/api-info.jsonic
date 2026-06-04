@@ -20,8 +20,30 @@ main: {
       ]
       title: "sharedmobility.ch API"
       version: "1.0.0"
+      tagline: "Find shared cars, scooters and bikes across Switzerland by location, provider or region"
+      homepage: "https://sharedmobility.ch/"
+      docs_url: "https://api.sharedmobility.ch/"
+      license_short: "Open Data (Swiss federal open government data)"
+      license_md: `- Distributed as Swiss open government data
+- Data is aggregated from third-party shared-mobility providers; provider-specific terms may apply when reusing brand or asset details
+- Attribution to sharedmobility.ch (and to the underlying providers) is expected when republishing`
+      about_md: `[sharedmobility.ch](https://sharedmobility.ch/) is a Swiss open data portal aggregating real-time shared-mobility offers — cars, scooters, mopeds and bikes — from the various operators active in Switzerland. The dataset is published as part of the Swiss federal open government data initiative and visualised on the official [geo.admin.ch](https://map.geo.admin.ch/) map under the shared-mobility layer.
+
+What you get from the API:
+- A live inventory of shared-mobility **assets** (vehicles / docks) with coordinates and vehicle type
+- The set of **providers** participating in the feed and the **regions** they cover
+- The **attributes** vocabulary describing vehicles (e.g. e-scooter, car, bike)
+- Spatial **search / identify** by coordinate + tolerance radius, with paging and optional ESRI JSON geometry
+
+The API is RESTful and documented via Swagger UI at the server root. No authentication is advertised for read access; CORS is reported as disabled by community catalogues, so browser clients may need a proxy.`
+      entity_desc: {
+        asset: "Individual shared-mobility vehicles or docks (cars, scooters, mopeds, bikes) with location and type, retrievable through the spatial identify/find endpoints."
+        attribute: "Vocabulary of vehicle/asset attributes (e.g. vehicle type such as `E-Scooter`) used to filter results."
+        provider: "The shared-mobility operators feeding the platform; lists the companies whose fleets are exposed via the API."
+        region: "Geographic coverage areas served by one or more providers."
+        search: "Spatial lookup operations — notably `GET /v1/sharedmobility/identify` — that return assets within a radius of given coordinates, with filtering, tolerance and offset paging."
+      }
+      auth: false
     }
   }
-}
-
 }

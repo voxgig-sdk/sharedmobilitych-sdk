@@ -93,14 +93,12 @@ func providerDirectSetup(mockres any) *providerDirectSetupResult {
 	env := envOverride(map[string]any{
 		"SHAREDMOBILITYCH_TEST_PROVIDER_ENTID": map[string]any{},
 		"SHAREDMOBILITYCH_TEST_LIVE":    "FALSE",
-		"SHAREDMOBILITYCH_APIKEY":       "NONE",
 	})
 
 	live := env["SHAREDMOBILITYCH_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["SHAREDMOBILITYCH_APIKEY"],
 		}
 		client := sdk.NewSharedmobilitychSDK(mergedOpts)
 

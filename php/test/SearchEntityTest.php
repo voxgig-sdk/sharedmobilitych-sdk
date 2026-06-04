@@ -86,7 +86,6 @@ function search_basic_setup($extra)
         "SHAREDMOBILITYCH_TEST_SEARCH_ENTID" => $idmap,
         "SHAREDMOBILITYCH_TEST_LIVE" => "FALSE",
         "SHAREDMOBILITYCH_TEST_EXPLAIN" => "FALSE",
-        "SHAREDMOBILITYCH_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function search_basic_setup($extra)
     if ($env["SHAREDMOBILITYCH_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SHAREDMOBILITYCH_APIKEY"],
             ],
             $extra ?? [],
         ]);

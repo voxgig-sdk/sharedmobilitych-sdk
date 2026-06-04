@@ -68,14 +68,12 @@ function provider_direct_setup($mockres)
     $env = Runner::env_override([
         "SHAREDMOBILITYCH_TEST_PROVIDER_ENTID" => [],
         "SHAREDMOBILITYCH_TEST_LIVE" => "FALSE",
-        "SHAREDMOBILITYCH_APIKEY" => "NONE",
     ]);
 
     $live = $env["SHAREDMOBILITYCH_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["SHAREDMOBILITYCH_APIKEY"],
         ];
         $client = new SharedmobilitychSDK($merged_opts);
         return [
