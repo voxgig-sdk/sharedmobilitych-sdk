@@ -119,6 +119,7 @@ func providerBasicSetup(extra map[string]any) *entityTestSetup {
 		"SHAREDMOBILITYCH_TEST_PROVIDER_ENTID": idmap,
 		"SHAREDMOBILITYCH_TEST_LIVE":      "FALSE",
 		"SHAREDMOBILITYCH_TEST_EXPLAIN":   "FALSE",
+		"SHAREDMOBILITYCH_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["SHAREDMOBILITYCH_TEST_PROVIDER_ENTID"])
@@ -129,6 +130,7 @@ func providerBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["SHAREDMOBILITYCH_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["SHAREDMOBILITYCH_APIKEY"],
 			},
 			extra,
 		})

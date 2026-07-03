@@ -1,20 +1,8 @@
 # Sharedmobilitych SDK
 
-Find shared cars, scooters and bikes across Switzerland by location, provider or region
+sharedmobility.ch API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About sharedmobility.ch API
-
-[sharedmobility.ch](https://sharedmobility.ch/) is a Swiss open data portal aggregating real-time shared-mobility offers — cars, scooters, mopeds and bikes — from the various operators active in Switzerland. The dataset is published as part of the Swiss federal open government data initiative and visualised on the official [geo.admin.ch](https://map.geo.admin.ch/) map under the shared-mobility layer.
-
-What you get from the API:
-- A live inventory of shared-mobility **assets** (vehicles / docks) with coordinates and vehicle type
-- The set of **providers** participating in the feed and the **regions** they cover
-- The **attributes** vocabulary describing vehicles (e.g. e-scooter, car, bike)
-- Spatial **search / identify** by coordinate + tolerance radius, with paging and optional ESRI JSON geometry
-
-The API is RESTful and documented via Swagger UI at the server root. No authentication is advertised for read access; CORS is reported as disabled by community catalogues, so browser clients may need a proxy.
 
 ## Try it
 
@@ -48,27 +36,31 @@ gem install sharedmobilitych-sdk
 luarocks install sharedmobilitych-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { SharedmobilitychSDK } from 'sharedmobilitych'
 
-const client = new SharedmobilitychSDK({})
+const client = new SharedmobilitychSDK({
+  apikey: process.env.SHAREDMOBILITYCH_APIKEY,
+})
 
+// Load asset data
+const asset = await client.Asset().load({})
+console.log(asset.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Asset** | Individual shared-mobility vehicles or docks (cars, scooters, mopeds, bikes) with location and type, retrievable through the spatial identify/find endpoints. | `/identify` |
-| **Attribute** | Vocabulary of vehicle/asset attributes (e.g. vehicle type such as `E-Scooter`) used to filter results. | `/attributes` |
-| **Provider** | The shared-mobility operators feeding the platform; lists the companies whose fleets are exposed via the API. | `/providers` |
-| **Region** | Geographic coverage areas served by one or more providers. | `/regions` |
-| **Search** | Spatial lookup operations — notably `GET /v1/sharedmobility/identify` — that return assets within a radius of given coordinates, with filtering, tolerance and offset paging. | `/find` |
+| **Asset** |  | `/identify` |
+| **Attribute** |  | `/attributes` |
+| **Provider** |  | `/providers` |
+| **Region** |  | `/regions` |
+| **Search** |  | `/find` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,15 +104,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from sharedmobilitych_sdk import SharedmobilitychSDK
 
-client = SharedmobilitychSDK({})
+client = SharedmobilitychSDK({
+    "apikey": os.environ.get("SHAREDMOBILITYCH_APIKEY"),
+})
 
 
 # Load a specific asset
-asset, err = client.Asset(None).load(
-    {"id": "example_id"}, None
-)
+asset, err = client.Asset().load({"id": "example_id"})
+print(asset)
 ```
 
 ### PHP
@@ -129,13 +123,14 @@ asset, err = client.Asset(None).load(
 <?php
 require_once 'sharedmobilitych_sdk.php';
 
-$client = new SharedmobilitychSDK([]);
+$client = new SharedmobilitychSDK([
+    "apikey" => getenv("SHAREDMOBILITYCH_APIKEY"),
+]);
 
 
 // Load a specific asset
-[$asset, $err] = $client->Asset(null)->load(
-    ["id" => "example_id"], null
-);
+[$asset, $err] = $client->Asset()->load(["id" => "example_id"]);
+print_r($asset);
 ```
 
 ### Golang
@@ -143,8 +138,13 @@ $client = new SharedmobilitychSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/sharedmobilitych-sdk/go"
 
-client := sdk.NewSharedmobilitychSDK(map[string]any{})
+client := sdk.NewSharedmobilitychSDK(map[string]any{
+    "apikey": os.Getenv("SHAREDMOBILITYCH_APIKEY"),
+})
 
+// Load asset data
+asset, err := client.Asset(nil).Load(map[string]any{}, nil)
+fmt.Println(asset)
 ```
 
 ### Ruby
@@ -152,13 +152,14 @@ client := sdk.NewSharedmobilitychSDK(map[string]any{})
 ```ruby
 require_relative "Sharedmobilitych_sdk"
 
-client = SharedmobilitychSDK.new({})
+client = SharedmobilitychSDK.new({
+  "apikey" => ENV["SHAREDMOBILITYCH_APIKEY"],
+})
 
 
 # Load a specific asset
-asset, err = client.Asset(nil).load(
-  { "id" => "example_id" }, nil
-)
+asset, err = client.Asset().load({ "id" => "example_id" })
+puts asset
 ```
 
 ### Lua
@@ -166,13 +167,14 @@ asset, err = client.Asset(nil).load(
 ```lua
 local sdk = require("sharedmobilitych_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("SHAREDMOBILITYCH_APIKEY"),
+})
 
 
 -- Load a specific asset
-local asset, err = client:Asset(nil):load(
-  { id = "example_id" }, nil
-)
+local asset, err = client:Asset():load({ id = "example_id" })
+print(asset)
 ```
 
 ## Unit testing in offline mode
@@ -191,25 +193,21 @@ const result = await client.Asset().load({ id: 'test01' })
 ### Python
 
 ```python
-client = SharedmobilitychSDK.test(None, None)
-result, err = client.Asset(None).load(
-    {"id": "test01"}, None
-)
+client = SharedmobilitychSDK.test()
+result, err = client.Asset().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = SharedmobilitychSDK::test(null, null);
-[$result, $err] = $client->Asset(null)->load(
-    ["id" => "test01"], null
-);
+$client = SharedmobilitychSDK::test();
+[$result, $err] = $client->Asset()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Asset(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -218,19 +216,15 @@ result, err := client.Asset(nil).Load(
 ### Ruby
 
 ```ruby
-client = SharedmobilitychSDK.test(nil, nil)
-result, err = client.Asset(nil).load(
-  { "id" => "test01" }, nil
-)
+client = SharedmobilitychSDK.test
+result, err = client.Asset().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Asset(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Asset():load({ id = "test01" })
 ```
 
 ## How it works
@@ -334,15 +328,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the sharedmobility.ch API
-
-- Upstream: [https://sharedmobility.ch/](https://sharedmobility.ch/)
-- API docs: [https://api.sharedmobility.ch/](https://api.sharedmobility.ch/)
-
-- Distributed as Swiss open government data
-- Data is aggregated from third-party shared-mobility providers; provider-specific terms may apply when reusing brand or asset details
-- Attribution to sharedmobility.ch (and to the underlying providers) is expected when republishing
 
 ---
 

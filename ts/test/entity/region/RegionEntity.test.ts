@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'SHAREDMOBILITYCH_TEST_REGION_ENTID': idmap,
     'SHAREDMOBILITYCH_TEST_LIVE': 'FALSE',
     'SHAREDMOBILITYCH_TEST_EXPLAIN': 'FALSE',
+    'SHAREDMOBILITYCH_APIKEY': 'NONE',
   })
 
   idmap = env['SHAREDMOBILITYCH_TEST_REGION_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new SharedmobilitychSDK(merge([
       {
+        apikey: env.SHAREDMOBILITYCH_APIKEY,
       },
       extra
     ]))
