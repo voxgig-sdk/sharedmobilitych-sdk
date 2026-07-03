@@ -10,13 +10,13 @@ The Ruby SDK for the Sharedmobilitych API — an entity-oriented client using id
 
 ## Install
 ```bash
-gem install sharedmobilitych-sdk
+gem install voxgig-sdk-sharedmobilitych
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "sharedmobilitych-sdk"
+gem "voxgig-sdk-sharedmobilitych"
 ```
 
 Then run:

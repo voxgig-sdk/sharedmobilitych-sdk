@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/sharedmobilitych",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the sharedmobility.ch public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "sharedmobilitych"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/sharedmobilitych-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/sharedmobilitych-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/sharedmobilitych-sdk/issues"
+  },
   "main": "dist/SharedmobilitychSDK.js",
   "type": "commonjs",
   "types": "dist/SharedmobilitychSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "Sharedmobilitych",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

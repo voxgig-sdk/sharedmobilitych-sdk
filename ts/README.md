@@ -10,7 +10,7 @@ The TypeScript SDK for the Sharedmobilitych API — a type-safe, entity-oriented
 
 ## Install
 ```bash
-npm install sharedmobilitych
+npm install @voxgig-sdk/sharedmobilitych
 ```
 ## Tutorial: your first API call
 

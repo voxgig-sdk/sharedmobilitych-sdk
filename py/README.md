@@ -10,7 +10,7 @@ The Python SDK for the Sharedmobilitych API — an entity-oriented client follow
 
 ## Install
 ```bash
-pip install sharedmobilitych-sdk
+pip install voxgig-sdk-sharedmobilitych
 ```
 
 Or install from source:

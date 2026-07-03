@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/sharedmobilitych",
-  "description": "Sharedmobilitych SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the sharedmobility.ch public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "sharedmobilitych"],
+  "homepage": "https://github.com/voxgig-sdk/sharedmobilitych-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/sharedmobilitych-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/sharedmobilitych-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

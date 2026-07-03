@@ -10,7 +10,7 @@ The Lua SDK for the Sharedmobilitych API — an entity-oriented client using Lua
 
 ## Install
 ```bash
-luarocks install sharedmobilitych-sdk
+luarocks install voxgig-sdk-sharedmobilitych
 ```
 
 If the module is not yet published, add the source directory to
