@@ -9,12 +9,9 @@ The Lua SDK for the Sharedmobilitych API — an entity-oriented client using Lua
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-sharedmobilitych
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/sharedmobilitych-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("sharedmobilitych_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("SHAREDMOBILITYCH_APIKEY"),
-})
+local client = sdk.new()
 ```
 
-### 3. Load a asset
+### 3. Load an asset
 
 ```lua
-local result, err = client:Asset():load({ id = "example_id" })
+local result, err = client:asset():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Sharedmobilitych():load({ id = "test01" })
+local result, err = client:asset():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -121,7 +116,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SHAREDMOBILITYCH_TEST_LIVE=TRUE
-SHAREDMOBILITYCH_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -281,7 +274,7 @@ API path: `/find`
 
 ### Asset
 
-Create an instance: `const asset = client.Asset()`
+Create an instance: `const asset = client.asset`
 
 #### Operations
 
@@ -301,13 +294,13 @@ Create an instance: `const asset = client.Asset()`
 #### Example: Load
 
 ```ts
-const asset = await client.Asset().load({ id: 'asset_id' })
+const asset = await client.asset.load({ id: 'asset_id' })
 ```
 
 
 ### Attribute
 
-Create an instance: `const attribute = client.Attribute()`
+Create an instance: `const attribute = client.attribute`
 
 #### Operations
 
@@ -326,13 +319,13 @@ Create an instance: `const attribute = client.Attribute()`
 #### Example: List
 
 ```ts
-const attributes = await client.Attribute().list()
+const attributes = await client.attribute.list()
 ```
 
 
 ### Provider
 
-Create an instance: `const provider = client.Provider()`
+Create an instance: `const provider = client.provider`
 
 #### Operations
 
@@ -354,13 +347,13 @@ Create an instance: `const provider = client.Provider()`
 #### Example: List
 
 ```ts
-const providers = await client.Provider().list()
+const providers = await client.provider.list()
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.Region()`
+Create an instance: `const region = client.region`
 
 #### Operations
 
@@ -380,13 +373,13 @@ Create an instance: `const region = client.Region()`
 #### Example: List
 
 ```ts
-const regions = await client.Region().list()
+const regions = await client.region.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -406,7 +399,7 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
@@ -481,11 +474,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local asset = client:asset()
+asset:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- asset:data_get() now returns the loaded asset data
+-- asset:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

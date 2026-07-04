@@ -55,6 +55,9 @@ class ProviderEntity
         return new ProviderEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Provider|array $args Provider data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class ProviderEntity
         }
     }
 
+    /**
+     * @return Provider|array The current Provider data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Provider fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class ProviderEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Provider fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class ProviderEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Provider items matching the given filter.
+     *
+     * @param ProviderListMatch|array|null $reqmatch Match filter (any subset
+     *   of Provider fields) as an assoc-array; ProviderListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Provider[]|array A list of Provider items as assoc-arrays at
+     *   the SDK boundary; throws SharedmobilitychError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class ProviderEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

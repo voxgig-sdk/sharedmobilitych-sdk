@@ -43,8 +43,7 @@ class AttributeEntityTest < Minitest::Test
     attribute_ref01_ent = client.Attribute(nil)
     attribute_ref01_match = {}
 
-    attribute_ref01_list_result, err = attribute_ref01_ent.list(attribute_ref01_match, nil)
-    assert_nil err
+    attribute_ref01_list_result = attribute_ref01_ent.list(attribute_ref01_match, nil)
     assert attribute_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def attribute_basic_setup(extra)
     "SHAREDMOBILITYCH_TEST_ATTRIBUTE_ENTID" => idmap,
     "SHAREDMOBILITYCH_TEST_LIVE" => "FALSE",
     "SHAREDMOBILITYCH_TEST_EXPLAIN" => "FALSE",
-    "SHAREDMOBILITYCH_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def attribute_basic_setup(extra)
   if env["SHAREDMOBILITYCH_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SHAREDMOBILITYCH_APIKEY"],
       },
       extra || {},
     ])

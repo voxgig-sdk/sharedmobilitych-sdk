@@ -144,16 +144,23 @@ class SharedmobilitychSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class SharedmobilitychSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,35 +212,90 @@ class SharedmobilitychSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def asset(self):
+        """Idiomatic facade: client.asset.list() / client.asset.load({"id": ...})."""
+        from entity.asset_entity import AssetEntity
+        cached = getattr(self, "_asset", None)
+        if cached is None:
+            cached = AssetEntity(self, None)
+            self._asset = cached
+        return cached
 
     def Asset(self, data=None):
+        # Deprecated: use client.asset instead.
         from entity.asset_entity import AssetEntity
         return AssetEntity(self, data)
 
 
+    @property
+    def attribute(self):
+        """Idiomatic facade: client.attribute.list() / client.attribute.load({"id": ...})."""
+        from entity.attribute_entity import AttributeEntity
+        cached = getattr(self, "_attribute", None)
+        if cached is None:
+            cached = AttributeEntity(self, None)
+            self._attribute = cached
+        return cached
+
     def Attribute(self, data=None):
+        # Deprecated: use client.attribute instead.
         from entity.attribute_entity import AttributeEntity
         return AttributeEntity(self, data)
 
 
+    @property
+    def provider(self):
+        """Idiomatic facade: client.provider.list() / client.provider.load({"id": ...})."""
+        from entity.provider_entity import ProviderEntity
+        cached = getattr(self, "_provider", None)
+        if cached is None:
+            cached = ProviderEntity(self, None)
+            self._provider = cached
+        return cached
+
     def Provider(self, data=None):
+        # Deprecated: use client.provider instead.
         from entity.provider_entity import ProviderEntity
         return ProviderEntity(self, data)
 
 
+    @property
+    def region(self):
+        """Idiomatic facade: client.region.list() / client.region.load({"id": ...})."""
+        from entity.region_entity import RegionEntity
+        cached = getattr(self, "_region", None)
+        if cached is None:
+            cached = RegionEntity(self, None)
+            self._region = cached
+        return cached
+
     def Region(self, data=None):
+        # Deprecated: use client.region instead.
         from entity.region_entity import RegionEntity
         return RegionEntity(self, data)
 
 
+    @property
+    def search(self):
+        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
+        from entity.search_entity import SearchEntity
+        cached = getattr(self, "_search", None)
+        if cached is None:
+            cached = SearchEntity(self, None)
+            self._search = cached
+        return cached
+
     def Search(self, data=None):
+        # Deprecated: use client.search instead.
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 

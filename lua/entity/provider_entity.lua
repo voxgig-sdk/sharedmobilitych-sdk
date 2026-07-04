@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ProviderListMatch
+---@param ctrl? table
+---@return Provider[]
+---@return string? err
 function ProviderEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

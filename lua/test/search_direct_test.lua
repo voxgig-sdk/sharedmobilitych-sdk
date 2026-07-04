@@ -63,14 +63,12 @@ function search_direct_setup(mockres)
   local env = runner.env_override({
     ["SHAREDMOBILITYCH_TEST_SEARCH_ENTID"] = {},
     ["SHAREDMOBILITYCH_TEST_LIVE"] = "FALSE",
-    ["SHAREDMOBILITYCH_APIKEY"] = "NONE",
   })
 
   local live = env["SHAREDMOBILITYCH_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["SHAREDMOBILITYCH_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -51,8 +51,7 @@ class TestAssetEntity:
         asset_ref01_match_dt0 = {
             "id": asset_ref01_data["id"],
         }
-        asset_ref01_data_dt0_loaded, err = asset_ref01_ent.load(asset_ref01_match_dt0, None)
-        assert err is None
+        asset_ref01_data_dt0_loaded = asset_ref01_ent.load(asset_ref01_match_dt0, None)
         asset_ref01_data_dt0_load_result = helpers.to_map(asset_ref01_data_dt0_loaded)
         assert asset_ref01_data_dt0_load_result is not None
         assert asset_ref01_data_dt0_load_result["id"] == asset_ref01_data["id"]
@@ -95,7 +94,6 @@ def _asset_basic_setup(extra):
         "SHAREDMOBILITYCH_TEST_ASSET_ENTID": idmap,
         "SHAREDMOBILITYCH_TEST_LIVE": "FALSE",
         "SHAREDMOBILITYCH_TEST_EXPLAIN": "FALSE",
-        "SHAREDMOBILITYCH_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -106,7 +104,6 @@ def _asset_basic_setup(extra):
     if env.get("SHAREDMOBILITYCH_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SHAREDMOBILITYCH_APIKEY"),
             },
             extra or {},
         ])

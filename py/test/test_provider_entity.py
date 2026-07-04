@@ -50,8 +50,7 @@ class TestProviderEntity:
         provider_ref01_ent = client.Provider(None)
         provider_ref01_match = {}
 
-        provider_ref01_list_result, err = provider_ref01_ent.list(provider_ref01_match, None)
-        assert err is None
+        provider_ref01_list_result = provider_ref01_ent.list(provider_ref01_match, None)
         assert isinstance(provider_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _provider_basic_setup(extra):
         "SHAREDMOBILITYCH_TEST_PROVIDER_ENTID": idmap,
         "SHAREDMOBILITYCH_TEST_LIVE": "FALSE",
         "SHAREDMOBILITYCH_TEST_EXPLAIN": "FALSE",
-        "SHAREDMOBILITYCH_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _provider_basic_setup(extra):
     if env.get("SHAREDMOBILITYCH_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SHAREDMOBILITYCH_APIKEY"),
             },
             extra or {},
         ])

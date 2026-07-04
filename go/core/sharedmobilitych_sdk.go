@@ -245,26 +245,41 @@ func (sdk *SharedmobilitychSDK) Direct(fetchargs map[string]any) (map[string]any
 }
 
 
+// Asset returns a Asset entity bound to this client.
+// Idiomatic usage: client.Asset(nil).List(nil, nil) or
+// client.Asset(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SharedmobilitychSDK) Asset(data map[string]any) SharedmobilitychEntity {
 	return NewAssetEntityFunc(sdk, data)
 }
 
 
+// Attribute returns a Attribute entity bound to this client.
+// Idiomatic usage: client.Attribute(nil).List(nil, nil) or
+// client.Attribute(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SharedmobilitychSDK) Attribute(data map[string]any) SharedmobilitychEntity {
 	return NewAttributeEntityFunc(sdk, data)
 }
 
 
+// Provider returns a Provider entity bound to this client.
+// Idiomatic usage: client.Provider(nil).List(nil, nil) or
+// client.Provider(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SharedmobilitychSDK) Provider(data map[string]any) SharedmobilitychEntity {
 	return NewProviderEntityFunc(sdk, data)
 }
 
 
+// Region returns a Region entity bound to this client.
+// Idiomatic usage: client.Region(nil).List(nil, nil) or
+// client.Region(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SharedmobilitychSDK) Region(data map[string]any) SharedmobilitychEntity {
 	return NewRegionEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *SharedmobilitychSDK) Search(data map[string]any) SharedmobilitychEntity {
 	return NewSearchEntityFunc(sdk, data)
 }

@@ -244,30 +244,95 @@ end
 
 
 
+-- Idiomatic facade: client:asset():list() / client:asset():load({ id = ... })
+function SharedmobilitychSDK:asset(data)
+  local EntityMod = require("entity.asset_entity")
+  if data == nil then
+    if self._asset == nil then
+      self._asset = EntityMod.new(self, nil)
+    end
+    return self._asset
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:asset() instead.
 function SharedmobilitychSDK:Asset(data)
   local EntityMod = require("entity.asset_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:attribute():list() / client:attribute():load({ id = ... })
+function SharedmobilitychSDK:attribute(data)
+  local EntityMod = require("entity.attribute_entity")
+  if data == nil then
+    if self._attribute == nil then
+      self._attribute = EntityMod.new(self, nil)
+    end
+    return self._attribute
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:attribute() instead.
 function SharedmobilitychSDK:Attribute(data)
   local EntityMod = require("entity.attribute_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:provider():list() / client:provider():load({ id = ... })
+function SharedmobilitychSDK:provider(data)
+  local EntityMod = require("entity.provider_entity")
+  if data == nil then
+    if self._provider == nil then
+      self._provider = EntityMod.new(self, nil)
+    end
+    return self._provider
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:provider() instead.
 function SharedmobilitychSDK:Provider(data)
   local EntityMod = require("entity.provider_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:region():list() / client:region():load({ id = ... })
+function SharedmobilitychSDK:region(data)
+  local EntityMod = require("entity.region_entity")
+  if data == nil then
+    if self._region == nil then
+      self._region = EntityMod.new(self, nil)
+    end
+    return self._region
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:region() instead.
 function SharedmobilitychSDK:Region(data)
   local EntityMod = require("entity.region_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function SharedmobilitychSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function SharedmobilitychSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)

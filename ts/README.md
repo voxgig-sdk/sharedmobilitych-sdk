@@ -9,9 +9,12 @@ The TypeScript SDK for the Sharedmobilitych API — a type-safe, entity-oriented
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/sharedmobilitych
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/sharedmobilitych-sdk/releases](https://github.com/voxgig-sdk/sharedmobilitych-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { SharedmobilitychSDK } from 'sharedmobilitych'
+import { SharedmobilitychSDK } from '@voxgig-sdk/sharedmobilitych'
 
-const client = new SharedmobilitychSDK({
-  apikey: process.env.SHAREDMOBILITYCH_APIKEY,
-})
+const client = new SharedmobilitychSDK()
 ```
 
-### 3. Load a asset
+### 3. Load an asset
 
 ```ts
-const result = await client.Asset().load({ id: 'example_id' })
+const result = await client.asset.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SharedmobilitychSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.asset.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new SharedmobilitychSDK({ apikey: '...' })
+const client = new SharedmobilitychSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.asset
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new SharedmobilitychSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -134,7 +134,6 @@ Create a `.env.local` file at the project root:
 
 ```
 SHAREDMOBILITYCH_TEST_LIVE=TRUE
-SHAREDMOBILITYCH_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new SharedmobilitychSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new SharedmobilitychSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -326,7 +323,7 @@ API path: `/find`
 
 ### Asset
 
-Create an instance: `const asset = client.Asset()`
+Create an instance: `const asset = client.asset`
 
 #### Operations
 
@@ -346,13 +343,13 @@ Create an instance: `const asset = client.Asset()`
 #### Example: Load
 
 ```ts
-const asset = await client.Asset().load({ id: 'asset_id' })
+const asset = await client.asset.load({ id: 'asset_id' })
 ```
 
 
 ### Attribute
 
-Create an instance: `const attribute = client.Attribute()`
+Create an instance: `const attribute = client.attribute`
 
 #### Operations
 
@@ -371,13 +368,13 @@ Create an instance: `const attribute = client.Attribute()`
 #### Example: List
 
 ```ts
-const attributes = await client.Attribute().list()
+const attributes = await client.attribute.list()
 ```
 
 
 ### Provider
 
-Create an instance: `const provider = client.Provider()`
+Create an instance: `const provider = client.provider`
 
 #### Operations
 
@@ -399,13 +396,13 @@ Create an instance: `const provider = client.Provider()`
 #### Example: List
 
 ```ts
-const providers = await client.Provider().list()
+const providers = await client.provider.list()
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.Region()`
+Create an instance: `const region = client.region`
 
 #### Operations
 
@@ -425,13 +422,13 @@ Create an instance: `const region = client.Region()`
 #### Example: List
 
 ```ts
-const regions = await client.Region().list()
+const regions = await client.region.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -451,7 +448,7 @@ Create an instance: `const search = client.Search()`
 #### Example: List
 
 ```ts
-const searchs = await client.Search().list()
+const searchs = await client.search.list()
 ```
 
 
@@ -512,7 +509,7 @@ sharedmobilitych/
 Import the SDK from the package root:
 
 ```ts
-import { SharedmobilitychSDK } from 'sharedmobilitych'
+import { SharedmobilitychSDK } from '@voxgig-sdk/sharedmobilitych'
 ```
 
 ### Entity state
@@ -522,11 +519,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const asset = client.asset
+await asset.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// asset.data() now returns the loaded asset data
+// asset.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -45,6 +45,7 @@ class AssetEntity
     end
   end
 
+  # @return [Asset, Hash] the current Asset data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class AssetEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Asset fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Asset.
+  #
+  # @param reqmatch [AssetLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Asset, Hash] the loaded Asset; raises SharedmobilitychError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

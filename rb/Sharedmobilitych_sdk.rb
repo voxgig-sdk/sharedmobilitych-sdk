@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Sharedmobilitych_types'
+
 
 class SharedmobilitychSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class SharedmobilitychSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class SharedmobilitychSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue SharedmobilitychError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = SharedmobilitychHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class SharedmobilitychSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,40 +198,75 @@ class SharedmobilitychSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.asset.list / client.asset.load({ "id" => ... })
+  def asset
+    require_relative 'entity/asset_entity'
+    @asset ||= AssetEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.asset instead.
   def Asset(data = nil)
     require_relative 'entity/asset_entity'
     AssetEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.attribute.list / client.attribute.load({ "id" => ... })
+  def attribute
+    require_relative 'entity/attribute_entity'
+    @attribute ||= AttributeEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.attribute instead.
   def Attribute(data = nil)
     require_relative 'entity/attribute_entity'
     AttributeEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.provider.list / client.provider.load({ "id" => ... })
+  def provider
+    require_relative 'entity/provider_entity'
+    @provider ||= ProviderEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.provider instead.
   def Provider(data = nil)
     require_relative 'entity/provider_entity'
     ProviderEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.region.list / client.region.load({ "id" => ... })
+  def region
+    require_relative 'entity/region_entity'
+    @region ||= RegionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.region instead.
   def Region(data = nil)
     require_relative 'entity/region_entity'
     RegionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
+  def search
+    require_relative 'entity/search_entity'
+    @search ||= SearchEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.search instead.
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)

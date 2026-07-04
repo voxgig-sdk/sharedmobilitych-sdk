@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'SHAREDMOBILITYCH_TEST_REGION_ENTID': {},
     'SHAREDMOBILITYCH_TEST_LIVE': 'FALSE',
-    'SHAREDMOBILITYCH_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.SHAREDMOBILITYCH_TEST_LIVE
 
   if (live) {
     const client = new SharedmobilitychSDK({
-      apikey: env.SHAREDMOBILITYCH_APIKEY,
     })
 
     let idmap: any = env['SHAREDMOBILITYCH_TEST_REGION_ENTID']

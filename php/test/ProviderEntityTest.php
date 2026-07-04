@@ -50,8 +50,7 @@ class ProviderEntityTest extends TestCase
         $provider_ref01_ent = $client->Provider(null);
         $provider_ref01_match = [];
 
-        [$provider_ref01_list_result, $err] = $provider_ref01_ent->list($provider_ref01_match, null);
-        $this->assertNull($err);
+        $provider_ref01_list_result = $provider_ref01_ent->list($provider_ref01_match, null);
         $this->assertIsArray($provider_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function provider_basic_setup($extra)
         "SHAREDMOBILITYCH_TEST_PROVIDER_ENTID" => $idmap,
         "SHAREDMOBILITYCH_TEST_LIVE" => "FALSE",
         "SHAREDMOBILITYCH_TEST_EXPLAIN" => "FALSE",
-        "SHAREDMOBILITYCH_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function provider_basic_setup($extra)
     if ($env["SHAREDMOBILITYCH_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SHAREDMOBILITYCH_APIKEY"],
             ],
             $extra ?? [],
         ]);

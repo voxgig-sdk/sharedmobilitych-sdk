@@ -45,6 +45,7 @@ class ProviderEntity
     end
   end
 
+  # @return [Provider, Hash] the current Provider data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ProviderEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Provider fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ProviderEntity
   
 
   
+  # List Provider items matching the given filter.
+  #
+  # @param reqmatch [ProviderListMatch, Hash, nil] match filter (any subset of Provider fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Provider>, Array] the matching Provider items; raises SharedmobilitychError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

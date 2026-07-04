@@ -20,9 +20,6 @@ class SharedmobilitychConfig
             ],
             "options" => [
                 "base" => "https://sharedmobility.ch/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -158,7 +157,7 @@ Alias for `SharedmobilitychSDK.test()`.
 ## AssetEntity
 
 ```ts
-const asset = client.Asset()
+const asset = client.asset
 ```
 
 ### Fields
@@ -177,7 +176,7 @@ const asset = client.Asset()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Asset().load({ id: 'asset_id' })
+const result = await client.asset.load({ id: 'asset_id' })
 ```
 
 ### Common Methods
@@ -211,7 +210,7 @@ Return a copy of the entity options.
 ## AttributeEntity
 
 ```ts
-const attribute = client.Attribute()
+const attribute = client.attribute
 ```
 
 ### Fields
@@ -229,7 +228,7 @@ const attribute = client.Attribute()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Attribute().list()
+const results = await client.attribute.list()
 ```
 
 ### Common Methods
@@ -263,7 +262,7 @@ Return a copy of the entity options.
 ## ProviderEntity
 
 ```ts
-const provider = client.Provider()
+const provider = client.provider
 ```
 
 ### Fields
@@ -284,7 +283,7 @@ const provider = client.Provider()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Provider().list()
+const results = await client.provider.list()
 ```
 
 ### Common Methods
@@ -318,7 +317,7 @@ Return a copy of the entity options.
 ## RegionEntity
 
 ```ts
-const region = client.Region()
+const region = client.region
 ```
 
 ### Fields
@@ -337,7 +336,7 @@ const region = client.Region()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Region().list()
+const results = await client.region.list()
 ```
 
 ### Common Methods
@@ -371,7 +370,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.Search()
+const search = client.search
 ```
 
 ### Fields
@@ -390,7 +389,7 @@ const search = client.Search()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Search().list()
+const results = await client.search.list()
 ```
 
 ### Common Methods

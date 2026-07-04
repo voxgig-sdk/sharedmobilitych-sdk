@@ -45,6 +45,7 @@ class AttributeEntity
     end
   end
 
+  # @return [Attribute, Hash] the current Attribute data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class AttributeEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Attribute fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class AttributeEntity
   
 
   
+  # List Attribute items matching the given filter.
+  #
+  # @param reqmatch [AttributeListMatch, Hash, nil] match filter (any subset of Attribute fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Attribute>, Array] the matching Attribute items; raises SharedmobilitychError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

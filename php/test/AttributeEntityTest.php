@@ -50,8 +50,7 @@ class AttributeEntityTest extends TestCase
         $attribute_ref01_ent = $client->Attribute(null);
         $attribute_ref01_match = [];
 
-        [$attribute_ref01_list_result, $err] = $attribute_ref01_ent->list($attribute_ref01_match, null);
-        $this->assertNull($err);
+        $attribute_ref01_list_result = $attribute_ref01_ent->list($attribute_ref01_match, null);
         $this->assertIsArray($attribute_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function attribute_basic_setup($extra)
         "SHAREDMOBILITYCH_TEST_ATTRIBUTE_ENTID" => $idmap,
         "SHAREDMOBILITYCH_TEST_LIVE" => "FALSE",
         "SHAREDMOBILITYCH_TEST_EXPLAIN" => "FALSE",
-        "SHAREDMOBILITYCH_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function attribute_basic_setup($extra)
     if ($env["SHAREDMOBILITYCH_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SHAREDMOBILITYCH_APIKEY"],
             ],
             $extra ?? [],
         ]);

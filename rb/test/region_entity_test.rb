@@ -43,8 +43,7 @@ class RegionEntityTest < Minitest::Test
     region_ref01_ent = client.Region(nil)
     region_ref01_match = {}
 
-    region_ref01_list_result, err = region_ref01_ent.list(region_ref01_match, nil)
-    assert_nil err
+    region_ref01_list_result = region_ref01_ent.list(region_ref01_match, nil)
     assert region_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def region_basic_setup(extra)
     "SHAREDMOBILITYCH_TEST_REGION_ENTID" => idmap,
     "SHAREDMOBILITYCH_TEST_LIVE" => "FALSE",
     "SHAREDMOBILITYCH_TEST_EXPLAIN" => "FALSE",
-    "SHAREDMOBILITYCH_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def region_basic_setup(extra)
   if env["SHAREDMOBILITYCH_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["SHAREDMOBILITYCH_APIKEY"],
       },
       extra || {},
     ])

@@ -50,8 +50,7 @@ class TestAttributeEntity:
         attribute_ref01_ent = client.Attribute(None)
         attribute_ref01_match = {}
 
-        attribute_ref01_list_result, err = attribute_ref01_ent.list(attribute_ref01_match, None)
-        assert err is None
+        attribute_ref01_list_result = attribute_ref01_ent.list(attribute_ref01_match, None)
         assert isinstance(attribute_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _attribute_basic_setup(extra):
         "SHAREDMOBILITYCH_TEST_ATTRIBUTE_ENTID": idmap,
         "SHAREDMOBILITYCH_TEST_LIVE": "FALSE",
         "SHAREDMOBILITYCH_TEST_EXPLAIN": "FALSE",
-        "SHAREDMOBILITYCH_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _attribute_basic_setup(extra):
     if env.get("SHAREDMOBILITYCH_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("SHAREDMOBILITYCH_APIKEY"),
             },
             extra or {},
         ])

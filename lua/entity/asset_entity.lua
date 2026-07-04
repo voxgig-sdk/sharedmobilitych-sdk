@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch AssetLoadMatch
+---@param ctrl? table
+---@return Asset
+---@return string? err
 function AssetEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

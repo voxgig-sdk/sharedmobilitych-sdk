@@ -51,8 +51,7 @@ class AssetEntityTest extends TestCase
         $asset_ref01_match_dt0 = [
             "id" => $asset_ref01_data["id"],
         ];
-        [$asset_ref01_data_dt0_loaded, $err] = $asset_ref01_ent->load($asset_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $asset_ref01_data_dt0_loaded = $asset_ref01_ent->load($asset_ref01_match_dt0, null);
         $asset_ref01_data_dt0_load_result = Helpers::to_map($asset_ref01_data_dt0_loaded);
         $this->assertNotNull($asset_ref01_data_dt0_load_result);
         $this->assertEquals($asset_ref01_data_dt0_load_result["id"], $asset_ref01_data["id"]);
@@ -89,7 +88,6 @@ function asset_basic_setup($extra)
         "SHAREDMOBILITYCH_TEST_ASSET_ENTID" => $idmap,
         "SHAREDMOBILITYCH_TEST_LIVE" => "FALSE",
         "SHAREDMOBILITYCH_TEST_EXPLAIN" => "FALSE",
-        "SHAREDMOBILITYCH_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -101,7 +99,6 @@ function asset_basic_setup($extra)
     if ($env["SHAREDMOBILITYCH_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["SHAREDMOBILITYCH_APIKEY"],
             ],
             $extra ?? [],
         ]);

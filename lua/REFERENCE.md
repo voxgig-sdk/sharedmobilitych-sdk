@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -100,7 +99,7 @@ same parameters as `direct()`.
 ## AssetEntity
 
 ```lua
-local asset = client:Asset(nil)
+local asset = client:asset(nil)
 ```
 
 ### Fields
@@ -119,7 +118,7 @@ local asset = client:Asset(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Asset():load({ id = "asset_id" })
+local result, err = client:asset():load({ id = "asset_id" })
 ```
 
 ### Common Methods
@@ -155,7 +154,7 @@ Return the entity name.
 ## AttributeEntity
 
 ```lua
-local attribute = client:Attribute(nil)
+local attribute = client:attribute(nil)
 ```
 
 ### Fields
@@ -173,7 +172,7 @@ local attribute = client:Attribute(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Attribute():list()
+local results, err = client:attribute():list()
 ```
 
 ### Common Methods
@@ -209,7 +208,7 @@ Return the entity name.
 ## ProviderEntity
 
 ```lua
-local provider = client:Provider(nil)
+local provider = client:provider(nil)
 ```
 
 ### Fields
@@ -230,7 +229,7 @@ local provider = client:Provider(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Provider():list()
+local results, err = client:provider():list()
 ```
 
 ### Common Methods
@@ -266,7 +265,7 @@ Return the entity name.
 ## RegionEntity
 
 ```lua
-local region = client:Region(nil)
+local region = client:region(nil)
 ```
 
 ### Fields
@@ -285,7 +284,7 @@ local region = client:Region(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Region():list()
+local results, err = client:region():list()
 ```
 
 ### Common Methods
@@ -321,7 +320,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:Search(nil)
+local search = client:search(nil)
 ```
 
 ### Fields
@@ -340,7 +339,7 @@ local search = client:Search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Search():list()
+local results, err = client:search():list()
 ```
 
 ### Common Methods
