@@ -96,7 +96,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AssetEntity
 
 ```python
-asset = client.asset
+asset = client.Asset()
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ asset = client.asset
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.asset.load({"id": "asset_id"})
+result = client.Asset().load({"id": "asset_id"})
 ```
 
 ### Common Methods
@@ -150,7 +150,7 @@ Return the entity name.
 ## AttributeEntity
 
 ```python
-attribute = client.attribute
+attribute = client.Attribute()
 ```
 
 ### Fields
@@ -168,7 +168,9 @@ attribute = client.attribute
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.attribute.list({})
+results = client.Attribute().list({})
+for attribute in results:
+    print(attribute)
 ```
 
 ### Common Methods
@@ -203,7 +205,7 @@ Return the entity name.
 ## ProviderEntity
 
 ```python
-provider = client.provider
+provider = client.Provider()
 ```
 
 ### Fields
@@ -224,7 +226,9 @@ provider = client.provider
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.provider.list({})
+results = client.Provider().list({})
+for provider in results:
+    print(provider)
 ```
 
 ### Common Methods
@@ -259,7 +263,7 @@ Return the entity name.
 ## RegionEntity
 
 ```python
-region = client.region
+region = client.Region()
 ```
 
 ### Fields
@@ -278,7 +282,9 @@ region = client.region
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.region.list({})
+results = client.Region().list({})
+for region in results:
+    print(region)
 ```
 
 ### Common Methods
@@ -313,7 +319,7 @@ Return the entity name.
 ## SearchEntity
 
 ```python
-search = client.search
+search = client.Search()
 ```
 
 ### Fields
@@ -332,7 +338,9 @@ search = client.search
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.search.list({})
+results = client.Search().list({})
+for search in results:
+    print(search)
 ```
 
 ### Common Methods

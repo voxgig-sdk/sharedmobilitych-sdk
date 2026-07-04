@@ -4,91 +4,85 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Asset:
-    geometry: Optional[dict] = None
-    id: Optional[str] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
+class Asset(TypedDict, total=False):
+    geometry: dict
+    id: str
+    property: dict
+    type: str
 
 
-@dataclass
-class AssetLoadMatch:
-    geometry: Optional[dict] = None
-    id: Optional[str] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
+class AssetLoadMatch(TypedDict, total=False):
+    geometry: dict
+    id: str
+    property: dict
+    type: str
 
 
-@dataclass
-class Attribute:
-    description: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class Attribute(TypedDict, total=False):
+    description: str
+    name: str
+    type: str
 
 
-@dataclass
-class AttributeListMatch:
-    description: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class AttributeListMatch(TypedDict, total=False):
+    description: str
+    name: str
+    type: str
 
 
-@dataclass
-class Provider:
-    contact: Optional[dict] = None
-    coverage_area: Optional[list] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[list] = None
-    website: Optional[str] = None
+class Provider(TypedDict, total=False):
+    contact: dict
+    coverage_area: list
+    id: str
+    name: str
+    type: list
+    website: str
 
 
-@dataclass
-class ProviderListMatch:
-    contact: Optional[dict] = None
-    coverage_area: Optional[list] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[list] = None
-    website: Optional[str] = None
+class ProviderListMatch(TypedDict, total=False):
+    contact: dict
+    coverage_area: list
+    id: str
+    name: str
+    type: list
+    website: str
 
 
-@dataclass
-class Region:
-    geometry: Optional[dict] = None
-    id: Optional[str] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
+class Region(TypedDict, total=False):
+    geometry: dict
+    id: str
+    property: dict
+    type: str
 
 
-@dataclass
-class RegionListMatch:
-    geometry: Optional[dict] = None
-    id: Optional[str] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
+class RegionListMatch(TypedDict, total=False):
+    geometry: dict
+    id: str
+    property: dict
+    type: str
 
 
-@dataclass
-class Search:
-    geometry: Optional[dict] = None
-    id: Optional[str] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
+class Search(TypedDict, total=False):
+    geometry: dict
+    id: str
+    property: dict
+    type: str
 
 
-@dataclass
-class SearchListMatch:
-    geometry: Optional[dict] = None
-    id: Optional[str] = None
-    property: Optional[dict] = None
-    type: Optional[str] = None
-
+class SearchListMatch(TypedDict, total=False):
+    geometry: dict
+    id: str
+    property: dict
+    type: str

@@ -32,8 +32,9 @@ client = SharedmobilitychSDK.new
 
 ```ruby
 begin
-  result = client.asset.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Asset record (raises on error).
+  asset = client.Asset.load({ "id" => "example_id" })
+  puts asset
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = SharedmobilitychSDK.test
+client = SharedmobilitychSDK.test({
+  "entity" => { "asset" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.asset.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+asset = client.Asset.load({ "id" => "test01" })
+puts asset
 ```
 
 ### Use a custom fetch function
@@ -162,8 +167,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Asset` | `(data) -> AssetEntity` | Create a Asset entity instance. |
-| `Attribute` | `(data) -> AttributeEntity` | Create a Attribute entity instance. |
+| `Asset` | `(data) -> AssetEntity` | Create an Asset entity instance. |
+| `Attribute` | `(data) -> AttributeEntity` | Create an Attribute entity instance. |
 | `Provider` | `(data) -> ProviderEntity` | Create a Provider entity instance. |
 | `Region` | `(data) -> RegionEntity` | Create a Region entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
@@ -278,7 +283,7 @@ API path: `/find`
 
 ### Asset
 
-Create an instance: `const asset = client.asset`
+Create an instance: `asset = client.Asset`
 
 #### Operations
 
@@ -297,14 +302,15 @@ Create an instance: `const asset = client.asset`
 
 #### Example: Load
 
-```ts
-const asset = await client.asset.load({ id: 'asset_id' })
+```ruby
+# load returns the bare Asset record (raises on error).
+asset = client.Asset.load({ "id" => "asset_id" })
 ```
 
 
 ### Attribute
 
-Create an instance: `const attribute = client.attribute`
+Create an instance: `attribute = client.Attribute`
 
 #### Operations
 
@@ -322,14 +328,15 @@ Create an instance: `const attribute = client.attribute`
 
 #### Example: List
 
-```ts
-const attributes = await client.attribute.list()
+```ruby
+# list returns an Array of Attribute records (raises on error).
+attributes = client.Attribute.list
 ```
 
 
 ### Provider
 
-Create an instance: `const provider = client.provider`
+Create an instance: `provider = client.Provider`
 
 #### Operations
 
@@ -350,14 +357,15 @@ Create an instance: `const provider = client.provider`
 
 #### Example: List
 
-```ts
-const providers = await client.provider.list()
+```ruby
+# list returns an Array of Provider records (raises on error).
+providers = client.Provider.list
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.region`
+Create an instance: `region = client.Region`
 
 #### Operations
 
@@ -376,14 +384,15 @@ Create an instance: `const region = client.region`
 
 #### Example: List
 
-```ts
-const regions = await client.region.list()
+```ruby
+# list returns an Array of Region records (raises on error).
+regions = client.Region.list
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -402,8 +411,9 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```ruby
+# list returns an Array of Search records (raises on error).
+searchs = client.Search.list
 ```
 
 
@@ -478,7 +488,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-asset = client.asset
+asset = client.Asset
 asset.load({ "id" => "example_id" })
 
 # asset.data_get now returns the loaded asset data

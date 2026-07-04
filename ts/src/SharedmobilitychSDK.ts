@@ -208,70 +208,35 @@ class SharedmobilitychSDK {
 
 
 
-  _asset?: AssetEntity
-
-  // Idiomatic facade: `client.asset.list()` / `client.asset.load({ id })`.
-  get asset(): AssetEntity {
-    return (this._asset ??= new AssetEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.asset` instead. */
+  // Entity access: `client.Asset().list()` / `client.Asset().load({ id })`.
   Asset(data?: any) {
     const self = this
     return new AssetEntity(self,data)
   }
 
 
-  _attribute?: AttributeEntity
-
-  // Idiomatic facade: `client.attribute.list()` / `client.attribute.load({ id })`.
-  get attribute(): AttributeEntity {
-    return (this._attribute ??= new AttributeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.attribute` instead. */
+  // Entity access: `client.Attribute().list()` / `client.Attribute().load({ id })`.
   Attribute(data?: any) {
     const self = this
     return new AttributeEntity(self,data)
   }
 
 
-  _provider?: ProviderEntity
-
-  // Idiomatic facade: `client.provider.list()` / `client.provider.load({ id })`.
-  get provider(): ProviderEntity {
-    return (this._provider ??= new ProviderEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.provider` instead. */
+  // Entity access: `client.Provider().list()` / `client.Provider().load({ id })`.
   Provider(data?: any) {
     const self = this
     return new ProviderEntity(self,data)
   }
 
 
-  _region?: RegionEntity
-
-  // Idiomatic facade: `client.region.list()` / `client.region.load({ id })`.
-  get region(): RegionEntity {
-    return (this._region ??= new RegionEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.region` instead. */
+  // Entity access: `client.Region().list()` / `client.Region().load({ id })`.
   Region(data?: any) {
     const self = this
     return new RegionEntity(self,data)
   }
 
 
-  _search?: SearchEntity
-
-  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
-  get search(): SearchEntity {
-    return (this._search ??= new SearchEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.search` instead. */
+  // Entity access: `client.Search().list()` / `client.Search().load({ id })`.
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)

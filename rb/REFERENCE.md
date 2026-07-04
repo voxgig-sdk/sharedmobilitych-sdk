@@ -102,7 +102,7 @@ same parameters as `direct()`. Raises on error.
 ## AssetEntity
 
 ```ruby
-asset = client.asset
+asset = client.Asset
 ```
 
 ### Fields
@@ -121,7 +121,7 @@ asset = client.asset
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.asset.load({ "id" => "asset_id" })
+result = client.Asset.load({ "id" => "asset_id" })
 ```
 
 ### Common Methods
@@ -157,7 +157,7 @@ Return the entity name.
 ## AttributeEntity
 
 ```ruby
-attribute = client.attribute
+attribute = client.Attribute
 ```
 
 ### Fields
@@ -175,7 +175,7 @@ attribute = client.attribute
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.attribute.list(nil)
+results = client.Attribute.list(nil)
 ```
 
 ### Common Methods
@@ -211,7 +211,7 @@ Return the entity name.
 ## ProviderEntity
 
 ```ruby
-provider = client.provider
+provider = client.Provider
 ```
 
 ### Fields
@@ -232,7 +232,7 @@ provider = client.provider
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.provider.list(nil)
+results = client.Provider.list(nil)
 ```
 
 ### Common Methods
@@ -268,7 +268,7 @@ Return the entity name.
 ## RegionEntity
 
 ```ruby
-region = client.region
+region = client.Region
 ```
 
 ### Fields
@@ -287,7 +287,7 @@ region = client.region
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.region.list(nil)
+results = client.Region.list(nil)
 ```
 
 ### Common Methods
@@ -323,7 +323,7 @@ Return the entity name.
 ## SearchEntity
 
 ```ruby
-search = client.search
+search = client.Search
 ```
 
 ### Fields
@@ -342,7 +342,7 @@ search = client.search
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.search.list(nil)
+results = client.Search.list(nil)
 ```
 
 ### Common Methods

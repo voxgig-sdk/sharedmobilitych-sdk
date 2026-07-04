@@ -233,10 +233,10 @@ class SharedmobilitychSDK
 
     private $_asset = null;
 
-    // Idiomatic facade: $client->asset()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Asset() (PHP method
-    // names are case-insensitive).
-    public function asset($data = null)
+    // Canonical facade: $client->Asset()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->asset()
+    // resolves here too.
+    public function Asset($data = null)
     {
         require_once __DIR__ . '/entity/asset_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class SharedmobilitychSDK
 
     private $_attribute = null;
 
-    // Idiomatic facade: $client->attribute()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Attribute() (PHP method
-    // names are case-insensitive).
-    public function attribute($data = null)
+    // Canonical facade: $client->Attribute()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->attribute()
+    // resolves here too.
+    public function Attribute($data = null)
     {
         require_once __DIR__ . '/entity/attribute_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class SharedmobilitychSDK
 
     private $_provider = null;
 
-    // Idiomatic facade: $client->provider()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Provider() (PHP method
-    // names are case-insensitive).
-    public function provider($data = null)
+    // Canonical facade: $client->Provider()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->provider()
+    // resolves here too.
+    public function Provider($data = null)
     {
         require_once __DIR__ . '/entity/provider_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class SharedmobilitychSDK
 
     private $_region = null;
 
-    // Idiomatic facade: $client->region()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Region() (PHP method
-    // names are case-insensitive).
-    public function region($data = null)
+    // Canonical facade: $client->Region()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->region()
+    // resolves here too.
+    public function Region($data = null)
     {
         require_once __DIR__ . '/entity/region_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class SharedmobilitychSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {

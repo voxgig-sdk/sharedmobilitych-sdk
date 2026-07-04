@@ -157,7 +157,7 @@ Alias for `SharedmobilitychSDK.test()`.
 ## AssetEntity
 
 ```ts
-const asset = client.asset
+const asset = client.Asset()
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ const asset = client.asset
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.asset.load({ id: 'asset_id' })
+const result = await client.Asset().load({ id: 'asset_id' })
 ```
 
 ### Common Methods
@@ -210,7 +210,7 @@ Return a copy of the entity options.
 ## AttributeEntity
 
 ```ts
-const attribute = client.attribute
+const attribute = client.Attribute()
 ```
 
 ### Fields
@@ -228,7 +228,7 @@ const attribute = client.attribute
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.attribute.list()
+const results = await client.Attribute().list()
 ```
 
 ### Common Methods
@@ -262,7 +262,7 @@ Return a copy of the entity options.
 ## ProviderEntity
 
 ```ts
-const provider = client.provider
+const provider = client.Provider()
 ```
 
 ### Fields
@@ -283,7 +283,7 @@ const provider = client.provider
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.provider.list()
+const results = await client.Provider().list()
 ```
 
 ### Common Methods
@@ -317,7 +317,7 @@ Return a copy of the entity options.
 ## RegionEntity
 
 ```ts
-const region = client.region
+const region = client.Region()
 ```
 
 ### Fields
@@ -336,7 +336,7 @@ const region = client.region
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.region.list()
+const results = await client.Region().list()
 ```
 
 ### Common Methods
@@ -370,7 +370,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.search
+const search = client.Search()
 ```
 
 ### Fields
@@ -389,7 +389,7 @@ const search = client.search
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.search.list()
+const results = await client.Search().list()
 ```
 
 ### Common Methods

@@ -99,7 +99,7 @@ same parameters as `direct()`.
 ## AssetEntity
 
 ```lua
-local asset = client:asset(nil)
+local asset = client:Asset(nil)
 ```
 
 ### Fields
@@ -118,7 +118,7 @@ local asset = client:asset(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:asset():load({ id = "asset_id" })
+local result, err = client:Asset():load({ id = "asset_id" })
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## AttributeEntity
 
 ```lua
-local attribute = client:attribute(nil)
+local attribute = client:Attribute(nil)
 ```
 
 ### Fields
@@ -172,7 +172,7 @@ local attribute = client:attribute(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:attribute():list()
+local results, err = client:Attribute():list()
 ```
 
 ### Common Methods
@@ -208,7 +208,7 @@ Return the entity name.
 ## ProviderEntity
 
 ```lua
-local provider = client:provider(nil)
+local provider = client:Provider(nil)
 ```
 
 ### Fields
@@ -229,7 +229,7 @@ local provider = client:provider(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:provider():list()
+local results, err = client:Provider():list()
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ Return the entity name.
 ## RegionEntity
 
 ```lua
-local region = client:region(nil)
+local region = client:Region(nil)
 ```
 
 ### Fields
@@ -284,7 +284,7 @@ local region = client:region(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:region():list()
+local results, err = client:Region():list()
 ```
 
 ### Common Methods
@@ -320,7 +320,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:search(nil)
+local search = client:Search(nil)
 ```
 
 ### Fields
@@ -339,7 +339,7 @@ local search = client:search(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:search():list()
+local results, err = client:Search():list()
 ```
 
 ### Common Methods

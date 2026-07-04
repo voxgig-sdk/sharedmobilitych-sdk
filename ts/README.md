@@ -30,11 +30,14 @@ const client = new SharedmobilitychSDK()
 
 ### 3. Load an asset
 
-```ts
-const result = await client.asset.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const asset = await client.Asset().load({ id: 'example_id' })
+  console.log(asset)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SharedmobilitychSDK.test()
 
-const result = await client.asset.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const asset = await client.Asset().load({ id: 'test01' })
+// asset is a bare entity populated with mock response data
+console.log(asset)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.asset
+const entity = client.Asset()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -175,8 +181,8 @@ new SharedmobilitychSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Asset(data?)` | `AssetEntity` | Create a Asset entity instance. |
-| `Attribute(data?)` | `AttributeEntity` | Create a Attribute entity instance. |
+| `Asset(data?)` | `AssetEntity` | Create an Asset entity instance. |
+| `Attribute(data?)` | `AttributeEntity` | Create an Attribute entity instance. |
 | `Provider(data?)` | `ProviderEntity` | Create a Provider entity instance. |
 | `Region(data?)` | `RegionEntity` | Create a Region entity instance. |
 | `Search(data?)` | `SearchEntity` | Create a Search entity instance. |
@@ -196,29 +202,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): SharedmobilitychSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -323,7 +330,7 @@ API path: `/find`
 
 ### Asset
 
-Create an instance: `const asset = client.asset`
+Create an instance: `const asset = client.Asset()`
 
 #### Operations
 
@@ -343,13 +350,13 @@ Create an instance: `const asset = client.asset`
 #### Example: Load
 
 ```ts
-const asset = await client.asset.load({ id: 'asset_id' })
+const asset = await client.Asset().load({ id: 'asset_id' })
 ```
 
 
 ### Attribute
 
-Create an instance: `const attribute = client.attribute`
+Create an instance: `const attribute = client.Attribute()`
 
 #### Operations
 
@@ -368,13 +375,13 @@ Create an instance: `const attribute = client.attribute`
 #### Example: List
 
 ```ts
-const attributes = await client.attribute.list()
+const attributes = await client.Attribute().list()
 ```
 
 
 ### Provider
 
-Create an instance: `const provider = client.provider`
+Create an instance: `const provider = client.Provider()`
 
 #### Operations
 
@@ -396,13 +403,13 @@ Create an instance: `const provider = client.provider`
 #### Example: List
 
 ```ts
-const providers = await client.provider.list()
+const providers = await client.Provider().list()
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.region`
+Create an instance: `const region = client.Region()`
 
 #### Operations
 
@@ -422,13 +429,13 @@ Create an instance: `const region = client.region`
 #### Example: List
 
 ```ts
-const regions = await client.region.list()
+const regions = await client.Region().list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `const search = client.Search()`
 
 #### Operations
 
@@ -448,7 +455,7 @@ Create an instance: `const search = client.search`
 #### Example: List
 
 ```ts
-const searchs = await client.search.list()
+const searchs = await client.Search().list()
 ```
 
 
@@ -519,7 +526,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const asset = client.asset
+const asset = client.Asset()
 await asset.load({ id: "example_id" })
 
 // asset.data() now returns the loaded asset data

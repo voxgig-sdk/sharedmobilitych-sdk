@@ -26,9 +26,9 @@ import { SharedmobilitychSDK } from '@voxgig-sdk/sharedmobilitych'
 
 const client = new SharedmobilitychSDK()
 
-// Load asset data
-const asset = await client.asset.load({})
-console.log(asset.data)
+// Load asset data (returns a Asset)
+const asset = await client.Asset().load()
+console.log(asset)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -88,8 +88,8 @@ from sharedmobilitych_sdk import SharedmobilitychSDK
 client = SharedmobilitychSDK()
 
 
-# Load a specific asset
-asset = client.asset.load({"id": "example_id"})
+# Load a specific asset (returns the record, raises on error)
+asset = client.Asset().load({"id": "example_id"})
 print(asset)
 ```
 
@@ -102,8 +102,8 @@ require_once 'sharedmobilitych_sdk.php';
 $client = new SharedmobilitychSDK();
 
 
-// Load a specific asset
-$asset = $client->asset()->load(["id" => "example_id"]);
+// Load a specific asset (returns the bare record; throws on error)
+$asset = $client->Asset()->load(["id" => "example_id"]);
 print_r($asset);
 ```
 
@@ -127,8 +127,8 @@ require_relative "Sharedmobilitych_sdk"
 client = SharedmobilitychSDK.new
 
 
-# Load a specific asset
-asset = client.asset.load({ "id" => "example_id" })
+# Load a specific asset (returns the bare record; raises on error)
+asset = client.Asset.load({ "id" => "example_id" })
 puts asset
 ```
 
@@ -141,7 +141,7 @@ local client = sdk.new()
 
 
 -- Load a specific asset
-local asset, err = client:asset():load({ id = "example_id" })
+local asset, err = client:Asset():load({ id = "example_id" })
 print(asset)
 ```
 
@@ -154,22 +154,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = SharedmobilitychSDK.test()
-const result = await client.asset.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const asset = await client.Asset().load({ id: 'test01' })
+// asset is a bare Asset populated with mock data
+console.log(asset)
 ```
 
 ### Python
 
 ```python
 client = SharedmobilitychSDK.test()
-result = client.asset.load({"id": "test01"})
+asset = client.Asset().load({"id": "test01"})
+print(asset)
 ```
 
 ### PHP
 
 ```php
-$client = SharedmobilitychSDK::test();
-$result = $client->asset()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = SharedmobilitychSDK::test([
+    "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
+]);
+$asset = $client->Asset()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -184,15 +189,18 @@ result, err := client.Asset(nil).Load(
 ### Ruby
 
 ```ruby
-client = SharedmobilitychSDK.test
-result = client.asset.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = SharedmobilitychSDK.test({
+  "entity" => { "asset" => { "test01" => { "id" => "test01" } } },
+})
+asset = client.Asset.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:asset():load({ id = "test01" })
+local result, err = client:Asset():load({ id = "test01" })
 ```
 
 ## How it works
@@ -240,6 +248,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

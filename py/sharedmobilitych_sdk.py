@@ -220,89 +220,39 @@ class SharedmobilitychSDK:
         }
 
 
-    @property
-    def asset(self):
-        """Idiomatic facade: client.asset.list() / client.asset.load({"id": ...})."""
-        from entity.asset_entity import AssetEntity
-        cached = getattr(self, "_asset", None)
-        if cached is None:
-            cached = AssetEntity(self, None)
-            self._asset = cached
-        return cached
-
-    def Asset(self, data=None):
-        # Deprecated: use client.asset instead.
+    def Asset(self, data=None) -> "AssetEntity":
+        """Entity factory: client.Asset().list({}) / client.Asset().load({"id": ...})."""
         from entity.asset_entity import AssetEntity
         return AssetEntity(self, data)
 
 
-    @property
-    def attribute(self):
-        """Idiomatic facade: client.attribute.list() / client.attribute.load({"id": ...})."""
-        from entity.attribute_entity import AttributeEntity
-        cached = getattr(self, "_attribute", None)
-        if cached is None:
-            cached = AttributeEntity(self, None)
-            self._attribute = cached
-        return cached
-
-    def Attribute(self, data=None):
-        # Deprecated: use client.attribute instead.
+    def Attribute(self, data=None) -> "AttributeEntity":
+        """Entity factory: client.Attribute().list({}) / client.Attribute().load({"id": ...})."""
         from entity.attribute_entity import AttributeEntity
         return AttributeEntity(self, data)
 
 
-    @property
-    def provider(self):
-        """Idiomatic facade: client.provider.list() / client.provider.load({"id": ...})."""
-        from entity.provider_entity import ProviderEntity
-        cached = getattr(self, "_provider", None)
-        if cached is None:
-            cached = ProviderEntity(self, None)
-            self._provider = cached
-        return cached
-
-    def Provider(self, data=None):
-        # Deprecated: use client.provider instead.
+    def Provider(self, data=None) -> "ProviderEntity":
+        """Entity factory: client.Provider().list({}) / client.Provider().load({"id": ...})."""
         from entity.provider_entity import ProviderEntity
         return ProviderEntity(self, data)
 
 
-    @property
-    def region(self):
-        """Idiomatic facade: client.region.list() / client.region.load({"id": ...})."""
-        from entity.region_entity import RegionEntity
-        cached = getattr(self, "_region", None)
-        if cached is None:
-            cached = RegionEntity(self, None)
-            self._region = cached
-        return cached
-
-    def Region(self, data=None):
-        # Deprecated: use client.region instead.
+    def Region(self, data=None) -> "RegionEntity":
+        """Entity factory: client.Region().list({}) / client.Region().load({"id": ...})."""
         from entity.region_entity import RegionEntity
         return RegionEntity(self, data)
 
 
-    @property
-    def search(self):
-        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
-        from entity.search_entity import SearchEntity
-        cached = getattr(self, "_search", None)
-        if cached is None:
-            cached = SearchEntity(self, None)
-            self._search = cached
-        return cached
-
-    def Search(self, data=None):
-        # Deprecated: use client.search instead.
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "SharedmobilitychSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class SharedmobilitychSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.asset_entity import AssetEntity
+    from entity.attribute_entity import AttributeEntity
+    from entity.provider_entity import ProviderEntity
+    from entity.region_entity import RegionEntity
+    from entity.search_entity import SearchEntity

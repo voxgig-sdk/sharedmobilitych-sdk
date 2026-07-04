@@ -208,65 +208,35 @@ class SharedmobilitychSDK
   end
 
 
-  # Idiomatic facade: client.asset.list / client.asset.load({ "id" => ... })
-  def asset
-    require_relative 'entity/asset_entity'
-    @asset ||= AssetEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.asset instead.
+  # Canonical facade: client.Asset.list / client.Asset.load({ "id" => ... })
   def Asset(data = nil)
     require_relative 'entity/asset_entity'
     AssetEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.attribute.list / client.attribute.load({ "id" => ... })
-  def attribute
-    require_relative 'entity/attribute_entity'
-    @attribute ||= AttributeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.attribute instead.
+  # Canonical facade: client.Attribute.list / client.Attribute.load({ "id" => ... })
   def Attribute(data = nil)
     require_relative 'entity/attribute_entity'
     AttributeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.provider.list / client.provider.load({ "id" => ... })
-  def provider
-    require_relative 'entity/provider_entity'
-    @provider ||= ProviderEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.provider instead.
+  # Canonical facade: client.Provider.list / client.Provider.load({ "id" => ... })
   def Provider(data = nil)
     require_relative 'entity/provider_entity'
     ProviderEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.region.list / client.region.load({ "id" => ... })
-  def region
-    require_relative 'entity/region_entity'
-    @region ||= RegionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.region instead.
+  # Canonical facade: client.Region.list / client.Region.load({ "id" => ... })
   def Region(data = nil)
     require_relative 'entity/region_entity'
     RegionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)

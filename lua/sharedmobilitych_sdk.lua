@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:asset():list() / client:asset():load({ id = ... })
-function SharedmobilitychSDK:asset(data)
+-- Idiomatic facade: client:Asset():list() / client:Asset():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SharedmobilitychSDK:Asset(data)
   local EntityMod = require("entity.asset_entity")
   if data == nil then
     if self._asset == nil then
@@ -256,15 +257,10 @@ function SharedmobilitychSDK:asset(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:asset() instead.
-function SharedmobilitychSDK:Asset(data)
-  local EntityMod = require("entity.asset_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:attribute():list() / client:attribute():load({ id = ... })
-function SharedmobilitychSDK:attribute(data)
+-- Idiomatic facade: client:Attribute():list() / client:Attribute():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SharedmobilitychSDK:Attribute(data)
   local EntityMod = require("entity.attribute_entity")
   if data == nil then
     if self._attribute == nil then
@@ -275,15 +271,10 @@ function SharedmobilitychSDK:attribute(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:attribute() instead.
-function SharedmobilitychSDK:Attribute(data)
-  local EntityMod = require("entity.attribute_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:provider():list() / client:provider():load({ id = ... })
-function SharedmobilitychSDK:provider(data)
+-- Idiomatic facade: client:Provider():list() / client:Provider():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SharedmobilitychSDK:Provider(data)
   local EntityMod = require("entity.provider_entity")
   if data == nil then
     if self._provider == nil then
@@ -294,15 +285,10 @@ function SharedmobilitychSDK:provider(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:provider() instead.
-function SharedmobilitychSDK:Provider(data)
-  local EntityMod = require("entity.provider_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:region():list() / client:region():load({ id = ... })
-function SharedmobilitychSDK:region(data)
+-- Idiomatic facade: client:Region():list() / client:Region():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SharedmobilitychSDK:Region(data)
   local EntityMod = require("entity.region_entity")
   if data == nil then
     if self._region == nil then
@@ -313,15 +299,10 @@ function SharedmobilitychSDK:region(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:region() instead.
-function SharedmobilitychSDK:Region(data)
-  local EntityMod = require("entity.region_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
-function SharedmobilitychSDK:search(data)
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function SharedmobilitychSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   if data == nil then
     if self._search == nil then
@@ -329,12 +310,6 @@ function SharedmobilitychSDK:search(data)
     end
     return self._search
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:search() instead.
-function SharedmobilitychSDK:Search(data)
-  local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 

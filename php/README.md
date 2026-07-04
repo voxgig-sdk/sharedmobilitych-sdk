@@ -33,9 +33,10 @@ $client = new SharedmobilitychSDK();
 
 ```php
 try {
-    $result = $client->asset()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Asset record (throws on error).
+    $asset = $client->Asset()->load(["id" => "example_id"]);
+    print_r($asset);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = SharedmobilitychSDK::test();
+$client = SharedmobilitychSDK::test([
+    "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->asset()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$asset = $client->Asset()->load(["id" => "test01"]);
+print_r($asset);
 ```
 
 ### Use a custom fetch function
@@ -166,8 +171,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Asset` | `($data): AssetEntity` | Create a Asset entity instance. |
-| `Attribute` | `($data): AttributeEntity` | Create a Attribute entity instance. |
+| `Asset` | `($data): AssetEntity` | Create an Asset entity instance. |
+| `Attribute` | `($data): AttributeEntity` | Create an Attribute entity instance. |
 | `Provider` | `($data): ProviderEntity` | Create a Provider entity instance. |
 | `Region` | `($data): RegionEntity` | Create a Region entity instance. |
 | `Search` | `($data): SearchEntity` | Create a Search entity instance. |
@@ -283,7 +288,7 @@ API path: `/find`
 
 ### Asset
 
-Create an instance: `const asset = client.asset`
+Create an instance: `$asset = $client->Asset();`
 
 #### Operations
 
@@ -302,14 +307,15 @@ Create an instance: `const asset = client.asset`
 
 #### Example: Load
 
-```ts
-const asset = await client.asset.load({ id: 'asset_id' })
+```php
+// load() returns the bare Asset record (throws on error).
+$asset = $client->Asset()->load(["id" => "asset_id"]);
 ```
 
 
 ### Attribute
 
-Create an instance: `const attribute = client.attribute`
+Create an instance: `$attribute = $client->Attribute();`
 
 #### Operations
 
@@ -327,14 +333,15 @@ Create an instance: `const attribute = client.attribute`
 
 #### Example: List
 
-```ts
-const attributes = await client.attribute.list()
+```php
+// list() returns an array of Attribute records (throws on error).
+$attributes = $client->Attribute()->list();
 ```
 
 
 ### Provider
 
-Create an instance: `const provider = client.provider`
+Create an instance: `$provider = $client->Provider();`
 
 #### Operations
 
@@ -355,14 +362,15 @@ Create an instance: `const provider = client.provider`
 
 #### Example: List
 
-```ts
-const providers = await client.provider.list()
+```php
+// list() returns an array of Provider records (throws on error).
+$providers = $client->Provider()->list();
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.region`
+Create an instance: `$region = $client->Region();`
 
 #### Operations
 
@@ -381,14 +389,15 @@ Create an instance: `const region = client.region`
 
 #### Example: List
 
-```ts
-const regions = await client.region.list()
+```php
+// list() returns an array of Region records (throws on error).
+$regions = $client->Region()->list();
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -407,8 +416,9 @@ Create an instance: `const search = client.search`
 
 #### Example: List
 
-```ts
-const searchs = await client.search.list()
+```php
+// list() returns an array of Search records (throws on error).
+$searchs = $client->Search()->list();
 ```
 
 
@@ -483,7 +493,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$asset = $client->asset();
+$asset = $client->Asset();
 $asset->load(["id" => "example_id"]);
 
 // $asset->dataGet() now returns the loaded asset data
