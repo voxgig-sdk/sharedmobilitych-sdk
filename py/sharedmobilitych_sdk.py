@@ -221,31 +221,31 @@ class SharedmobilitychSDK:
 
 
     def Asset(self, data=None) -> "AssetEntity":
-        """Entity factory: client.Asset().list({}) / client.Asset().load({"id": ...})."""
+        """Entity factory: client.Asset().list() / client.Asset().load({"id": ...})."""
         from entity.asset_entity import AssetEntity
         return AssetEntity(self, data)
 
 
     def Attribute(self, data=None) -> "AttributeEntity":
-        """Entity factory: client.Attribute().list({}) / client.Attribute().load({"id": ...})."""
+        """Entity factory: client.Attribute().list() / client.Attribute().load({"id": ...})."""
         from entity.attribute_entity import AttributeEntity
         return AttributeEntity(self, data)
 
 
     def Provider(self, data=None) -> "ProviderEntity":
-        """Entity factory: client.Provider().list({}) / client.Provider().load({"id": ...})."""
+        """Entity factory: client.Provider().list() / client.Provider().load({"id": ...})."""
         from entity.provider_entity import ProviderEntity
         return ProviderEntity(self, data)
 
 
     def Region(self, data=None) -> "RegionEntity":
-        """Entity factory: client.Region().list({}) / client.Region().load({"id": ...})."""
+        """Entity factory: client.Region().list() / client.Region().load({"id": ...})."""
         from entity.region_entity import RegionEntity
         return RegionEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 

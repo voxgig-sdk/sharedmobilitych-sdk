@@ -29,13 +29,13 @@ Asset = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Asset#load (any subset of Asset fields).
+# Request payload for Asset#load.
 #
 # @!attribute [rw] geometry
 #   @return [Hash, nil]
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] property
 #   @return [Hash, nil]
@@ -67,7 +67,7 @@ Attribute = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Attribute#list (any subset of Attribute fields).
+# Request payload for Attribute#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]
@@ -113,7 +113,7 @@ Provider = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Provider#list (any subset of Provider fields).
+# Request payload for Provider#list.
 #
 # @!attribute [rw] contact
 #   @return [Hash, nil]
@@ -163,7 +163,7 @@ Region = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Region#list (any subset of Region fields).
+# Request payload for Region#list.
 #
 # @!attribute [rw] geometry
 #   @return [Hash, nil]
@@ -205,7 +205,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#list (any subset of Search fields).
+# Request payload for Search#list.
 #
 # @!attribute [rw] geometry
 #   @return [Hash, nil]

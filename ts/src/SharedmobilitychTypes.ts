@@ -12,7 +12,12 @@ export interface Asset {
   type?: string
 }
 
-export type AssetLoadMatch = Partial<Asset>
+export interface AssetLoadMatch {
+  geometry?: Record<string, any>
+  id: string
+  property?: Record<string, any>
+  type?: string
+}
 
 export interface Attribute {
   description?: string
@@ -20,7 +25,11 @@ export interface Attribute {
   type?: string
 }
 
-export type AttributeListMatch = Partial<Attribute>
+export interface AttributeListMatch {
+  description?: string
+  name?: string
+  type?: string
+}
 
 export interface Provider {
   contact?: Record<string, any>
@@ -31,7 +40,14 @@ export interface Provider {
   website?: string
 }
 
-export type ProviderListMatch = Partial<Provider>
+export interface ProviderListMatch {
+  contact?: Record<string, any>
+  coverage_area?: any[]
+  id?: string
+  name?: string
+  type?: any[]
+  website?: string
+}
 
 export interface Region {
   geometry?: Record<string, any>
@@ -40,7 +56,12 @@ export interface Region {
   type?: string
 }
 
-export type RegionListMatch = Partial<Region>
+export interface RegionListMatch {
+  geometry?: Record<string, any>
+  id?: string
+  property?: Record<string, any>
+  type?: string
+}
 
 export interface Search {
   geometry?: Record<string, any>
@@ -49,5 +70,10 @@ export interface Search {
   type?: string
 }
 
-export type SearchListMatch = Partial<Search>
+export interface SearchListMatch {
+  geometry?: Record<string, any>
+  id?: string
+  property?: Record<string, any>
+  type?: string
+}
 

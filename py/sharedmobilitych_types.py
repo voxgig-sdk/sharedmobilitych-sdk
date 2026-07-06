@@ -23,9 +23,12 @@ class Asset(TypedDict, total=False):
     type: str
 
 
-class AssetLoadMatch(TypedDict, total=False):
-    geometry: dict
+class AssetLoadMatchRequired(TypedDict):
     id: str
+
+
+class AssetLoadMatch(AssetLoadMatchRequired, total=False):
+    geometry: dict
     property: dict
     type: str
 

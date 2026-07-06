@@ -4,6 +4,8 @@
 
 The PHP SDK for the Sharedmobilitych API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Asset()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -42,6 +44,37 @@ try {
 ```
 
 
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $asset = $client->Asset()->load(["id" => "example_id"]);
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -61,7 +94,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -90,7 +126,7 @@ $client = SharedmobilitychSDK::test([
     "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
+// Entity ops return the bare mock record (throws on error).
 $asset = $client->Asset()->load(["id" => "test01"]);
 print_r($asset);
 ```
@@ -184,10 +220,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -300,10 +333,10 @@ Create an instance: `$asset = $client->Asset();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `geometry` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `property` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `geometry` | `array` |  |
+| `id` | `string` |  |
+| `property` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -327,9 +360,9 @@ Create an instance: `$attribute = $client->Attribute();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `description` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -353,12 +386,12 @@ Create an instance: `$provider = $client->Provider();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `contact` | ``$OBJECT`` |  |
-| `coverage_area` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$ARRAY`` |  |
-| `website` | ``$STRING`` |  |
+| `contact` | `array` |  |
+| `coverage_area` | `array` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `array` |  |
+| `website` | `string` |  |
 
 #### Example: List
 
@@ -382,10 +415,10 @@ Create an instance: `$region = $client->Region();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `geometry` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `property` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `geometry` | `array` |  |
+| `id` | `string` |  |
+| `property` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -409,10 +442,10 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `geometry` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `property` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
+| `geometry` | `array` |  |
+| `id` | `string` |  |
+| `property` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -422,12 +455,16 @@ $searchs = $client->Search()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -444,8 +481,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -496,8 +534,8 @@ stores the returned data and match criteria internally.
 $asset = $client->Asset();
 $asset->load(["id" => "example_id"]);
 
-// $asset->dataGet() now returns the loaded asset data
-// $asset->matchGet() returns the last match criteria
+// $asset->data_get() now returns the asset data from the last load
+// $asset->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

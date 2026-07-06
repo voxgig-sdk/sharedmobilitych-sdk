@@ -113,10 +113,10 @@ asset := client.Asset(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `property` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -162,9 +162,9 @@ attribute := client.Attribute(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -210,12 +210,12 @@ provider := client.Provider(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `contact` | ``$OBJECT`` | No |  |
-| `coverage_area` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$ARRAY`` | No |  |
-| `website` | ``$STRING`` | No |  |
+| `contact` | `map[string]any` | No |  |
+| `coverage_area` | `[]any` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `[]any` | No |  |
+| `website` | `string` | No |  |
 
 ### Operations
 
@@ -261,10 +261,10 @@ region := client.Region(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `property` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -310,10 +310,10 @@ search := client.Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `geometry` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `property` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `property` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

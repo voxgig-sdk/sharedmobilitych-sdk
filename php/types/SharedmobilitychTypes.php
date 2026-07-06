@@ -21,11 +21,11 @@ class Asset
     public ?string $type = null;
 }
 
-/** Match filter for Asset#load (any subset of Asset fields). */
+/** Request payload for Asset#load. */
 class AssetLoadMatch
 {
     public ?array $geometry = null;
-    public ?string $id = null;
+    public string $id;
     public ?array $property = null;
     public ?string $type = null;
 }
@@ -38,7 +38,7 @@ class Attribute
     public ?string $type = null;
 }
 
-/** Match filter for Attribute#list (any subset of Attribute fields). */
+/** Request payload for Attribute#list. */
 class AttributeListMatch
 {
     public ?string $description = null;
@@ -57,7 +57,7 @@ class Provider
     public ?string $website = null;
 }
 
-/** Match filter for Provider#list (any subset of Provider fields). */
+/** Request payload for Provider#list. */
 class ProviderListMatch
 {
     public ?array $contact = null;
@@ -77,7 +77,7 @@ class Region
     public ?string $type = null;
 }
 
-/** Match filter for Region#list (any subset of Region fields). */
+/** Request payload for Region#list. */
 class RegionListMatch
 {
     public ?array $geometry = null;
@@ -95,7 +95,7 @@ class Search
     public ?string $type = null;
 }
 
-/** Match filter for Search#list (any subset of Search fields). */
+/** Request payload for Search#list. */
 class SearchListMatch
 {
     public ?array $geometry = null;

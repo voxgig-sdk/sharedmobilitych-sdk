@@ -16,11 +16,10 @@ type Asset struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// AssetLoadMatch mirrors the asset fields as an all-optional match
-// filter (Go analog of Partial<Asset>).
+// AssetLoadMatch is the typed request payload for Asset.LoadTyped.
 type AssetLoadMatch struct {
 	Geometry *map[string]any `json:"geometry,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	Property *map[string]any `json:"property,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
@@ -32,8 +31,7 @@ type Attribute struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// AttributeListMatch mirrors the attribute fields as an all-optional match
-// filter (Go analog of Partial<Attribute>).
+// AttributeListMatch is the typed request payload for Attribute.ListTyped.
 type AttributeListMatch struct {
 	Description *string `json:"description,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -50,8 +48,7 @@ type Provider struct {
 	Website *string `json:"website,omitempty"`
 }
 
-// ProviderListMatch mirrors the provider fields as an all-optional match
-// filter (Go analog of Partial<Provider>).
+// ProviderListMatch is the typed request payload for Provider.ListTyped.
 type ProviderListMatch struct {
 	Contact *map[string]any `json:"contact,omitempty"`
 	CoverageArea *[]any `json:"coverage_area,omitempty"`
@@ -69,8 +66,7 @@ type Region struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// RegionListMatch mirrors the region fields as an all-optional match
-// filter (Go analog of Partial<Region>).
+// RegionListMatch is the typed request payload for Region.ListTyped.
 type RegionListMatch struct {
 	Geometry *map[string]any `json:"geometry,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -86,8 +82,7 @@ type Search struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// SearchListMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchListMatch is the typed request payload for Search.ListTyped.
 type SearchListMatch struct {
 	Geometry *map[string]any `json:"geometry,omitempty"`
 	Id *string `json:"id,omitempty"`

@@ -13,6 +13,10 @@
 ---@field type? string
 
 ---@class AssetLoadMatch
+---@field geometry? table
+---@field id string
+---@field property? table
+---@field type? string
 
 ---@class Attribute
 ---@field description? string
@@ -20,6 +24,9 @@
 ---@field type? string
 
 ---@class AttributeListMatch
+---@field description? string
+---@field name? string
+---@field type? string
 
 ---@class Provider
 ---@field contact? table
@@ -30,6 +37,12 @@
 ---@field website? string
 
 ---@class ProviderListMatch
+---@field contact? table
+---@field coverage_area? table
+---@field id? string
+---@field name? string
+---@field type? table
+---@field website? string
 
 ---@class Region
 ---@field geometry? table
@@ -38,6 +51,10 @@
 ---@field type? string
 
 ---@class RegionListMatch
+---@field geometry? table
+---@field id? string
+---@field property? table
+---@field type? string
 
 ---@class Search
 ---@field geometry? table
@@ -46,6 +63,10 @@
 ---@field type? string
 
 ---@class SearchListMatch
+---@field geometry? table
+---@field id? string
+---@field property? table
+---@field type? string
 
 local M = {}
 
