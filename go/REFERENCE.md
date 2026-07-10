@@ -107,6 +107,7 @@ same parameters as `Direct()`.
 
 ```go
 asset := client.Asset(nil)
+fmt.Println(asset.GetName()) // "asset"
 ```
 
 ### Fields
@@ -126,6 +127,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Asset(nil).Load(map[string]any{"id": "asset_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -156,6 +161,7 @@ Return the entity name.
 
 ```go
 attribute := client.Attribute(nil)
+fmt.Println(attribute.GetName()) // "attribute"
 ```
 
 ### Fields
@@ -174,6 +180,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Attribute(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -204,6 +214,7 @@ Return the entity name.
 
 ```go
 provider := client.Provider(nil)
+fmt.Println(provider.GetName()) // "provider"
 ```
 
 ### Fields
@@ -225,6 +236,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Provider(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -255,6 +270,7 @@ Return the entity name.
 
 ```go
 region := client.Region(nil)
+fmt.Println(region.GetName()) // "region"
 ```
 
 ### Fields
@@ -274,6 +290,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Region(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -304,6 +324,7 @@ Return the entity name.
 
 ```go
 search := client.Search(nil)
+fmt.Println(search.GetName()) // "search"
 ```
 
 ### Fields
@@ -323,6 +344,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Search(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

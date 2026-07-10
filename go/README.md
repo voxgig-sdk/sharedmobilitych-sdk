@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single asset — the value is the loaded record.
-    asset, err := client.Asset(nil).Load(map[string]any{"id": "example"}, nil)
+    asset, err := client.Asset(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }

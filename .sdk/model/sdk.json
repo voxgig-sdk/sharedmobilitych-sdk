@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -640,14 +637,17 @@
           "name": "Open Data",
           "url": "https://opendata.swiss/en/dataset/standorte-und-verfugbarkeit-von-shared-mobility-angeboten"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://sharedmobility.ch/api"
           }
         ],
+        "summary": "Access sharedmobility.ch data via RESTful API.",
         "title": "sharedmobility.ch API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://github.com/SFOE/sharedmobility/blob/main/Sharedmobility.ch-API.md"
       },
       "option": {},
       "target": {
@@ -700,6 +700,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -750,6 +753,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

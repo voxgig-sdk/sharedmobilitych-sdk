@@ -19,9 +19,9 @@ main: {
           url: "https://sharedmobility.ch/api"
         }
       ]
+      summary: "Access sharedmobility.ch data via RESTful API."
       title: "sharedmobility.ch API"
       version: "1.0.0"
+      website: "https://github.com/SFOE/sharedmobility/blob/main/Sharedmobility.ch-API.md"
     }
   }
-}
-
