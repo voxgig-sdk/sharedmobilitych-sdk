@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Sharedmobilitych SDK exists test
 
 local sdk = require("sharedmobilitych_sdk")
 
