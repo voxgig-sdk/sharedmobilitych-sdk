@@ -14,24 +14,28 @@ guide: {
   entity: attribute: {
     path: "/attributes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.attributes`")|top
     }
   }
 
   entity: provider: {
     path: "/providers": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.providers`")|top
     }
   }
 
   entity: region: {
     path: "/regions": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.features`")|top
     }
   }
 
   entity: search: {
     path: "/find": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.features`")|top
     }
   }
 

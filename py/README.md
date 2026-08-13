@@ -38,7 +38,7 @@ client = SharedmobilitychSDK()
 
 ### 3. Load an asset
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -55,10 +55,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    asset = client.Asset().load({"id": "example_id"})
-    print(asset)
+    regions = client.Region().list()
+    print(regions)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = SharedmobilitychSDK.test()
 
-# Entity ops return the bare record and raise on error.
-asset = client.Asset().load({"id": "test01"})
-# asset contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+region = client.Region().list()
+# region contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -223,7 +224,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -247,7 +248,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: Load.
@@ -287,7 +288,7 @@ API path: `/providers`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -300,7 +301,7 @@ API path: `/regions`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -328,7 +329,7 @@ Create an instance: `asset = client.Asset()`
 | --- | --- | --- |
 | `geometry` | `dict` |  |
 | `id` | `str` |  |
-| `property` | `dict` |  |
+| `properties` | `dict` |  |
 | `type` | `str` |  |
 
 #### Example: Load
@@ -407,7 +408,7 @@ Create an instance: `region = client.Region()`
 | --- | --- | --- |
 | `geometry` | `dict` |  |
 | `id` | `str` |  |
-| `property` | `dict` |  |
+| `properties` | `dict` |  |
 | `type` | `str` |  |
 
 #### Example: List
@@ -433,7 +434,7 @@ Create an instance: `search = client.Search()`
 | --- | --- | --- |
 | `geometry` | `dict` |  |
 | `id` | `str` |  |
-| `property` | `dict` |  |
+| `properties` | `dict` |  |
 | `type` | `str` |  |
 
 #### Example: List
@@ -514,15 +515,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-asset = client.Asset()
-asset.load({"id": "example_id"})
+region = client.Region()
+region.list()
 
-# asset.data_get() now returns the asset data from the last load
-# asset.match_get() returns the last match criteria
+# region.data_get() now returns the region data from the last list
+# region.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

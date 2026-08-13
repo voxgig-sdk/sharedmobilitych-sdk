@@ -108,7 +108,7 @@ local asset = client:Asset(nil)
 | --- | --- | --- | --- |
 | `geometry` | `table` | No |  |
 | `id` | `string` | No |  |
-| `property` | `table` | No |  |
+| `properties` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -274,7 +274,7 @@ local region = client:Region(nil)
 | --- | --- | --- | --- |
 | `geometry` | `table` | No |  |
 | `id` | `string` | No |  |
-| `property` | `table` | No |  |
+| `properties` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -329,7 +329,7 @@ local search = client:Search(nil)
 | --- | --- | --- | --- |
 | `geometry` | `table` | No |  |
 | `id` | `string` | No |  |
-| `property` | `table` | No |  |
+| `properties` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

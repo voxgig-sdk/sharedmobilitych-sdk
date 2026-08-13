@@ -63,7 +63,7 @@ describe('AssetEntity', async () => {
     const asset_ref01_ent = client.Asset()
     const asset_ref01_match_dt0: any = {}
     asset_ref01_match_dt0.id = asset_ref01_data.id
-    const asset_ref01_data_dt0 = await asset_ref01_ent.load(asset_ref01_match_dt0)
+    const asset_ref01_data_dt0 = (await asset_ref01_ent.load(asset_ref01_match_dt0)).data()
     assert(asset_ref01_data_dt0.id === asset_ref01_data.id)
 
 

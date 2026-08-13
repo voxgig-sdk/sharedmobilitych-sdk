@@ -35,7 +35,7 @@ $client = new SharedmobilitychSDK();
 
 ```php
 try {
-    // load() returns the bare Asset record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Asset record (throws on error).
     $asset = $client->Asset()->load(["id" => "example_id"]);
     print_r($asset);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $asset = $client->Asset()->load(["id" => "example_id"]);
+    $regions = $client->Region()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -118,17 +118,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = SharedmobilitychSDK::test([
-    "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
-]);
+$client = SharedmobilitychSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$asset = $client->Asset()->load(["id" => "test01"]);
-print_r($asset);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$region = $client->Region()->list();
+print_r($region);
 ```
 
 ### Use a custom fetch function
@@ -230,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -254,7 +252,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: Load.
@@ -294,7 +292,7 @@ API path: `/providers`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -307,7 +305,7 @@ API path: `/regions`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -335,13 +333,13 @@ Create an instance: `$asset = $client->Asset();`
 | --- | --- | --- |
 | `geometry` | `array` |  |
 | `id` | `string` |  |
-| `property` | `array` |  |
+| `properties` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Asset record (throws on error).
+// load() returns the ENTITY — call data_get() for the Asset record (throws on error).
 $asset = $client->Asset()->load(["id" => "asset_id"]);
 ```
 
@@ -417,7 +415,7 @@ Create an instance: `$region = $client->Region();`
 | --- | --- | --- |
 | `geometry` | `array` |  |
 | `id` | `string` |  |
-| `property` | `array` |  |
+| `properties` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -444,7 +442,7 @@ Create an instance: `$search = $client->Search();`
 | --- | --- | --- |
 | `geometry` | `array` |  |
 | `id` | `string` |  |
-| `property` | `array` |  |
+| `properties` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -527,15 +525,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$asset = $client->Asset();
-$asset->load(["id" => "example_id"]);
+$region = $client->Region();
+$region->list();
 
-// $asset->data_get() now returns the asset data from the last load
-// $asset->match_get() returns the last match criteria
+// $region->data_get() now returns the region data from the last list
+// $region->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

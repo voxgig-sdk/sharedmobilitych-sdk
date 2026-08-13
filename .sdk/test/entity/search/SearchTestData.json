@@ -4,19 +4,19 @@
       "SEARCH00": {
         "geometry": {},
         "id": "SEARCH00",
-        "property": {},
+        "properties": {},
         "type": "s2b"
       },
       "SEARCH01": {
         "geometry": {},
         "id": "SEARCH01",
-        "property": {},
+        "properties": {},
         "type": "s53"
       },
       "SEARCH02": {
         "geometry": {},
         "id": "SEARCH02",
-        "property": {},
+        "properties": {},
         "type": "s7b"
       }
     }
@@ -25,7 +25,7 @@
     "search": {
       "search_ref01": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "sa3"
       }
     }

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ SharedmobilitychUtility::setRegistrar(function (SharedmobilitychUtility $u): voi
     $u->prepare_params = [SharedmobilitychPrepareParams::class, 'call'];
     $u->prepare_path = [SharedmobilitychPreparePath::class, 'call'];
     $u->prepare_query = [SharedmobilitychPrepareQuery::class, 'call'];
+    $u->graphql_body = [SharedmobilitychGraphql::class, 'body'];
+    $u->graphql_errors = [SharedmobilitychGraphql::class, 'errors'];
     $u->result_basic = [SharedmobilitychResultBasic::class, 'call'];
     $u->result_body = [SharedmobilitychResultBody::class, 'call'];
     $u->result_headers = [SharedmobilitychResultHeaders::class, 'call'];

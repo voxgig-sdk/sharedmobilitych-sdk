@@ -68,7 +68,7 @@ func TestAssetEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		assetRef01DataDt0LoadResult := core.ToMapAny(assetRef01DataDt0Loaded)
+		assetRef01DataDt0LoadResult := core.ToMapAny(entityData(assetRef01DataDt0Loaded))
 		if assetRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

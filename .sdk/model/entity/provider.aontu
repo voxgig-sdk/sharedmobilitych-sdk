@@ -55,7 +55,7 @@ main: kit: entity: provider: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.providers`"
           }
         }
       ]

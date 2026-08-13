@@ -17,7 +17,7 @@ class Asset
 {
     public ?array $geometry = null;
     public ?string $id = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 
@@ -26,7 +26,7 @@ class AssetLoadMatch
 {
     public ?array $geometry = null;
     public string $id;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 
@@ -73,7 +73,7 @@ class Region
 {
     public ?array $geometry = null;
     public ?string $id = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 
@@ -82,7 +82,7 @@ class RegionListMatch
 {
     public ?array $geometry = null;
     public ?string $id = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 
@@ -91,7 +91,7 @@ class Search
 {
     public ?array $geometry = null;
     public ?string $id = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 
@@ -100,7 +100,7 @@ class SearchListMatch
 {
     public ?array $geometry = null;
     public ?string $id = null;
-    public ?array $property = null;
+    public ?array $properties = null;
     public ?string $type = null;
 }
 

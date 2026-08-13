@@ -53,10 +53,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const asset = await client.Asset().load({ id: "example_id" })
-  console.log(asset)
+  const regions = await client.Region().list()
+  console.log(regions)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -120,9 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = SharedmobilitychSDK.test()
 
-const asset = await client.Asset().load({ id: 'test01' })
-// asset is a bare entity populated with mock response data
-console.log(asset)
+const region = await client.Region().list()
+// region is the entity, populated with mock response data
+// — call region.data() for the record itself
+console.log(region)
 ```
 
 You can also use the instance method:
@@ -137,10 +138,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Asset()
+const entity = client.Region()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -293,7 +294,7 @@ The `prepare()` method returns:
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: load.
@@ -333,7 +334,7 @@ API path: `/providers`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: list.
@@ -346,7 +347,7 @@ API path: `/regions`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: list.
@@ -374,7 +375,7 @@ Create an instance: `const asset = client.Asset()`
 | --- | --- | --- |
 | `geometry` | `Record<string, any>` |  |
 | `id` | `string` |  |
-| `property` | `Record<string, any>` |  |
+| `properties` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -453,7 +454,7 @@ Create an instance: `const region = client.Region()`
 | --- | --- | --- |
 | `geometry` | `Record<string, any>` |  |
 | `id` | `string` |  |
-| `property` | `Record<string, any>` |  |
+| `properties` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -479,7 +480,7 @@ Create an instance: `const search = client.Search()`
 | --- | --- | --- |
 | `geometry` | `Record<string, any>` |  |
 | `id` | `string` |  |
-| `property` | `Record<string, any>` |  |
+| `properties` | `Record<string, any>` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -553,16 +554,16 @@ import { SharedmobilitychSDK } from '@voxgig-sdk/sharedmobilitych'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const asset = client.Asset()
-await asset.load({ id: "example_id" })
+const region = client.Region()
+await region.list()
 
-// asset.data() now returns the asset data from the last `load`
-// asset.match() returns { id: "example_id" }
+// region.data() now returns the region data from the last `list`
+// region.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

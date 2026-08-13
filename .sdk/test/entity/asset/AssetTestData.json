@@ -4,19 +4,19 @@
       "ASSET00": {
         "geometry": {},
         "id": "ASSET00",
-        "property": {},
+        "properties": {},
         "type": "s2b"
       },
       "ASSET01": {
         "geometry": {},
         "id": "ASSET01",
-        "property": {},
+        "properties": {},
         "type": "s53"
       },
       "ASSET02": {
         "geometry": {},
         "id": "ASSET02",
-        "property": {},
+        "properties": {},
         "type": "s7b"
       }
     }
@@ -25,7 +25,7 @@
     "asset": {
       "asset_ref01": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "sa3"
       }
     }

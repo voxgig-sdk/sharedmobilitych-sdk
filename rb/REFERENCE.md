@@ -111,7 +111,7 @@ asset = client.Asset
 | --- | --- | --- | --- |
 | `geometry` | `Hash` | No |  |
 | `id` | `String` | No |  |
-| `property` | `Hash` | No |  |
+| `properties` | `Hash` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -277,7 +277,7 @@ region = client.Region
 | --- | --- | --- | --- |
 | `geometry` | `Hash` | No |  |
 | `id` | `String` | No |  |
-| `property` | `Hash` | No |  |
+| `properties` | `Hash` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -332,7 +332,7 @@ search = client.Search
 | --- | --- | --- | --- |
 | `geometry` | `Hash` | No |  |
 | `id` | `String` | No |  |
-| `property` | `Hash` | No |  |
+| `properties` | `Hash` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations

@@ -34,7 +34,7 @@ client = SharedmobilitychSDK.new
 
 ```ruby
 begin
-  # load returns the bare Asset record (raises on error).
+  # load returns the ENTITY — call data_get for the Asset record (raises on error).
   asset = client.Asset.load({ "id" => "example_id" })
   puts asset
 rescue => err
@@ -49,9 +49,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  asset = client.Asset.load({ "id" => "example_id" })
+  regions = client.Region.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -112,17 +112,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = SharedmobilitychSDK.test({
-  "entity" => { "asset" => { "test01" => { "id" => "test01" } } },
-})
+client = SharedmobilitychSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-asset = client.Asset.load({ "id" => "test01" })
-puts asset
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+region = client.Region.list()
+puts region
 ```
 
 ### Use a custom fetch function
@@ -244,7 +242,7 @@ returns a result `Hash` with these keys:
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: Load.
@@ -284,7 +282,7 @@ API path: `/providers`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -297,7 +295,7 @@ API path: `/regions`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -325,13 +323,13 @@ Create an instance: `asset = client.Asset`
 | --- | --- | --- |
 | `geometry` | `Hash` |  |
 | `id` | `String` |  |
-| `property` | `Hash` |  |
+| `properties` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Asset record (raises on error).
+# load returns the ENTITY — call data_get for the Asset record (raises on error).
 asset = client.Asset.load({ "id" => "asset_id" })
 ```
 
@@ -407,7 +405,7 @@ Create an instance: `region = client.Region`
 | --- | --- | --- |
 | `geometry` | `Hash` |  |
 | `id` | `String` |  |
-| `property` | `Hash` |  |
+| `properties` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: List
@@ -434,7 +432,7 @@ Create an instance: `search = client.Search`
 | --- | --- | --- |
 | `geometry` | `Hash` |  |
 | `id` | `String` |  |
-| `property` | `Hash` |  |
+| `properties` | `Hash` |  |
 | `type` | `String` |  |
 
 #### Example: List
@@ -517,15 +515,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-asset = client.Asset
-asset.load({ "id" => "example_id" })
+region = client.Region
+region.list()
 
-# asset.data_get now returns the asset data from the last load
-# asset.match_get returns the last match criteria
+# region.data_get now returns the region data from the last list
+# region.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

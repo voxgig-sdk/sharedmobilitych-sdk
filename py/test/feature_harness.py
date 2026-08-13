@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import SharedmobilitychControl
-from core.error import SharedmobilitychError
-from core.result import SharedmobilitychResult
-from core.spec import SharedmobilitychSpec
+from sharedmobilitych_sdk.config import make_config
+from sharedmobilitych_sdk.features import _make_feature
+from sharedmobilitych_sdk.core.control import SharedmobilitychControl
+from sharedmobilitych_sdk.core.error import SharedmobilitychError
+from sharedmobilitych_sdk.core.result import SharedmobilitychResult
+from sharedmobilitych_sdk.core.spec import SharedmobilitychSpec
 
 
 # True when this SDK was generated with the named feature.

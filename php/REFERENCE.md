@@ -110,7 +110,7 @@ $asset = $client->Asset();
 | --- | --- | --- | --- |
 | `geometry` | `array` | No |  |
 | `id` | `string` | No |  |
-| `property` | `array` | No |  |
+| `properties` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -276,7 +276,7 @@ $region = $client->Region();
 | --- | --- | --- | --- |
 | `geometry` | `array` | No |  |
 | `id` | `string` | No |  |
-| `property` | `array` | No |  |
+| `properties` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -331,7 +331,7 @@ $search = $client->Search();
 | --- | --- | --- | --- |
 | `geometry` | `array` | No |  |
 | `id` | `string` | No |  |
-| `property` | `array` | No |  |
+| `properties` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

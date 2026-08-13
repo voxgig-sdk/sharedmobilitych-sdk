@@ -16,7 +16,7 @@ main: kit: entity: asset: {
       type: "`$STRING`"
     }
     {
-      name: "property"
+      name: "properties"
       req: false
       type: "`$OBJECT`"
     }

@@ -52,7 +52,7 @@ class AssetEntityTest extends TestCase
             "id" => $asset_ref01_data["id"],
         ];
         $asset_ref01_data_dt0_loaded = $asset_ref01_ent->load($asset_ref01_match_dt0, null);
-        $asset_ref01_data_dt0_load_result = Helpers::to_map($asset_ref01_data_dt0_loaded);
+        $asset_ref01_data_dt0_load_result = Helpers::to_map(is_object($asset_ref01_data_dt0_loaded) && method_exists($asset_ref01_data_dt0_loaded, 'data_get') ? $asset_ref01_data_dt0_loaded->data_get() : $asset_ref01_data_dt0_loaded);
         $this->assertNotNull($asset_ref01_data_dt0_load_result);
         $this->assertEquals($asset_ref01_data_dt0_load_result["id"], $asset_ref01_data["id"]);
 

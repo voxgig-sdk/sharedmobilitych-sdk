@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from sharedmobilitych_sdk.utility.voxgig_struct import voxgig_struct as vs
 from sharedmobilitych_sdk import SharedmobilitychSDK
-from core import helpers
+from sharedmobilitych_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -52,7 +52,7 @@ class TestAssetEntity:
             "id": asset_ref01_data["id"],
         }
         asset_ref01_data_dt0_loaded = asset_ref01_ent.load(asset_ref01_match_dt0, None)
-        asset_ref01_data_dt0_load_result = helpers.to_map(asset_ref01_data_dt0_loaded)
+        asset_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(asset_ref01_data_dt0_loaded))
         assert asset_ref01_data_dt0_load_result is not None
         assert asset_ref01_data_dt0_load_result["id"] == asset_ref01_data["id"]
 

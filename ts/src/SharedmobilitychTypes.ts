@@ -8,14 +8,14 @@
 export interface Asset {
   geometry?: Record<string, any>
   id?: string
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 
 export interface AssetLoadMatch {
   geometry?: Record<string, any>
   id: string
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 
@@ -52,28 +52,28 @@ export interface ProviderListMatch {
 export interface Region {
   geometry?: Record<string, any>
   id?: string
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 
 export interface RegionListMatch {
   geometry?: Record<string, any>
   id?: string
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 
 export interface Search {
   geometry?: Record<string, any>
   id?: string
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 
 export interface SearchListMatch {
   geometry?: Record<string, any>
   id?: string
-  property?: Record<string, any>
+  properties?: Record<string, any>
   type?: string
 }
 

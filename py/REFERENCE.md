@@ -105,7 +105,7 @@ asset = client.Asset()
 | --- | --- | --- | --- |
 | `geometry` | `dict` | No |  |
 | `id` | `str` | No |  |
-| `property` | `dict` | No |  |
+| `properties` | `dict` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -272,7 +272,7 @@ region = client.Region()
 | --- | --- | --- | --- |
 | `geometry` | `dict` | No |  |
 | `id` | `str` | No |  |
-| `property` | `dict` | No |  |
+| `properties` | `dict` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -328,7 +328,7 @@ search = client.Search()
 | --- | --- | --- | --- |
 | `geometry` | `dict` | No |  |
 | `id` | `str` | No |  |
-| `property` | `dict` | No |  |
+| `properties` | `dict` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations

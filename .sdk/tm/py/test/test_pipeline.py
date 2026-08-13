@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import SharedmobilitychSDK
-from core.error import SharedmobilitychError
-from core.result import SharedmobilitychResult
-from core.response import SharedmobilitychResponse
-from core.spec import SharedmobilitychSpec
-from feature.base_feature import SharedmobilitychBaseFeature
+from projectname_sdk.core.error import SharedmobilitychError
+from projectname_sdk.core.result import SharedmobilitychResult
+from projectname_sdk.core.response import SharedmobilitychResponse
+from projectname_sdk.core.spec import SharedmobilitychSpec
+from projectname_sdk.feature.base_feature import SharedmobilitychBaseFeature
 
 
 def _client():

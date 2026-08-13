@@ -9,13 +9,13 @@
 ---@class Asset
 ---@field geometry? table
 ---@field id? string
----@field property? table
+---@field properties? table
 ---@field type? string
 
 ---@class AssetLoadMatch
 ---@field geometry? table
 ---@field id string
----@field property? table
+---@field properties? table
 ---@field type? string
 
 ---@class Attribute
@@ -47,25 +47,25 @@
 ---@class Region
 ---@field geometry? table
 ---@field id? string
----@field property? table
+---@field properties? table
 ---@field type? string
 
 ---@class RegionListMatch
 ---@field geometry? table
 ---@field id? string
----@field property? table
+---@field properties? table
 ---@field type? string
 
 ---@class Search
 ---@field geometry? table
 ---@field id? string
----@field property? table
+---@field properties? table
 ---@field type? string
 
 ---@class SearchListMatch
 ---@field geometry? table
 ---@field id? string
----@field property? table
+---@field properties? table
 ---@field type? string
 
 local M = {}

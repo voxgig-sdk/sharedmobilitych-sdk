@@ -16,7 +16,7 @@ main: kit: entity: region: {
       type: "`$STRING`"
     }
     {
-      name: "property"
+      name: "properties"
       req: false
       type: "`$OBJECT`"
     }
@@ -45,7 +45,7 @@ main: kit: entity: region: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.features`"
           }
         }
       ]

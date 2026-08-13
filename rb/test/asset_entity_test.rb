@@ -45,7 +45,7 @@ class AssetEntityTest < Minitest::Test
       "id" => asset_ref01_data["id"],
     }
     asset_ref01_data_dt0_loaded = asset_ref01_ent.load(asset_ref01_match_dt0, nil)
-    asset_ref01_data_dt0_load_result = Helpers.to_map(asset_ref01_data_dt0_loaded)
+    asset_ref01_data_dt0_load_result = Helpers.to_map(asset_ref01_data_dt0_loaded.respond_to?(:data_get) ? asset_ref01_data_dt0_loaded.data_get : asset_ref01_data_dt0_loaded)
     assert !asset_ref01_data_dt0_load_result.nil?
     assert_equal asset_ref01_data_dt0_load_result["id"], asset_ref01_data["id"]
 

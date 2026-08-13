@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local asset, err = client:Asset():load({ id = "example_id" })
+local regions, err = client:Region():list()
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Asset():load({ id = "test01" })
+local result, err = client:Region():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -233,7 +233,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: Load.
@@ -273,7 +273,7 @@ API path: `/providers`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -286,7 +286,7 @@ API path: `/regions`
 | --- | --- |
 | `geometry` |  |
 | `id` |  |
-| `property` |  |
+| `properties` |  |
 | `type` |  |
 
 Operations: List.
@@ -314,7 +314,7 @@ Create an instance: `local asset = client:Asset(nil)`
 | --- | --- | --- |
 | `geometry` | `table` |  |
 | `id` | `string` |  |
-| `property` | `table` |  |
+| `properties` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -393,7 +393,7 @@ Create an instance: `local region = client:Region(nil)`
 | --- | --- | --- |
 | `geometry` | `table` |  |
 | `id` | `string` |  |
-| `property` | `table` |  |
+| `properties` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -419,7 +419,7 @@ Create an instance: `local search = client:Search(nil)`
 | --- | --- | --- |
 | `geometry` | `table` |  |
 | `id` | `string` |  |
-| `property` | `table` |  |
+| `properties` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -501,15 +501,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local asset = client:Asset()
-asset:load({ id = "example_id" })
+local region = client:Region()
+region:list()
 
--- asset:data_get() now returns the asset data from the last load
--- asset:match_get() returns the last match criteria
+-- region:data_get() now returns the region data from the last list
+-- region:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from sharedmobilitych_sdk.utility.voxgig_struct import voxgig_struct as vs
 from sharedmobilitych_sdk import SharedmobilitychSDK
-from core import helpers
+from sharedmobilitych_sdk.core import helpers
 from test import runner
 
 

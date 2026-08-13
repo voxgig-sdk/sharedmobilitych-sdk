@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ SharedmobilitychUtility.registrar = ->(u) {
   u.prepare_params = SharedmobilitychUtilities::PrepareParams
   u.prepare_path = SharedmobilitychUtilities::PreparePath
   u.prepare_query = SharedmobilitychUtilities::PrepareQuery
+  u.graphql_body = SharedmobilitychUtilities::GraphqlBody
+  u.graphql_errors = SharedmobilitychUtilities::GraphqlErrors
   u.result_basic = SharedmobilitychUtilities::ResultBasic
   u.result_body = SharedmobilitychUtilities::ResultBody
   u.result_headers = SharedmobilitychUtilities::ResultHeaders

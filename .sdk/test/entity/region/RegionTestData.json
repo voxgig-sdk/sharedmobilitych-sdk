@@ -4,19 +4,19 @@
       "REGION00": {
         "geometry": {},
         "id": "REGION00",
-        "property": {},
+        "properties": {},
         "type": "s2b"
       },
       "REGION01": {
         "geometry": {},
         "id": "REGION01",
-        "property": {},
+        "properties": {},
         "type": "s53"
       },
       "REGION02": {
         "geometry": {},
         "id": "REGION02",
-        "property": {},
+        "properties": {},
         "type": "s7b"
       }
     }
@@ -25,7 +25,7 @@
     "region": {
       "region_ref01": {
         "geometry": {},
-        "property": {},
+        "properties": {},
         "type": "sa3"
       }
     }

@@ -16,7 +16,7 @@
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
@@ -24,7 +24,7 @@
 Asset = Struct.new(
   :geometry,
   :id,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )
@@ -37,7 +37,7 @@ Asset = Struct.new(
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
@@ -45,7 +45,7 @@ Asset = Struct.new(
 AssetLoadMatch = Struct.new(
   :geometry,
   :id,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )
@@ -150,7 +150,7 @@ ProviderListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
@@ -158,7 +158,7 @@ ProviderListMatch = Struct.new(
 Region = Struct.new(
   :geometry,
   :id,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )
@@ -171,7 +171,7 @@ Region = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
@@ -179,7 +179,7 @@ Region = Struct.new(
 RegionListMatch = Struct.new(
   :geometry,
   :id,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )
@@ -192,7 +192,7 @@ RegionListMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
@@ -200,7 +200,7 @@ RegionListMatch = Struct.new(
 Search = Struct.new(
   :geometry,
   :id,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )
@@ -213,7 +213,7 @@ Search = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] property
+# @!attribute [rw] properties
 #   @return [Hash, nil]
 #
 # @!attribute [rw] type
@@ -221,7 +221,7 @@ Search = Struct.new(
 SearchListMatch = Struct.new(
   :geometry,
   :id,
-  :property,
+  :properties,
   :type,
   keyword_init: true
 )

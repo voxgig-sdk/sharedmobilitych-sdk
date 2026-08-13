@@ -37,7 +37,7 @@ class AttributeEntity extends SharedmobilitychEntityBase<Attribute> {
 
 
 
-  async list(this: any, reqmatch?: AttributeListMatch, ctrl?: Control): Promise<Attribute[]> {
+  async list(this: any, reqmatch?: AttributeListMatch, ctrl?: Control): Promise<AttributeEntity[]> {
 
     const utility = this._utility
 

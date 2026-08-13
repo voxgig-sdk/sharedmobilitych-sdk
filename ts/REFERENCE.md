@@ -166,7 +166,7 @@ const asset = client.Asset()
 | --- | --- | --- | --- |
 | `geometry` | `Record<string, any>` | No |  |
 | `id` | `string` | No |  |
-| `property` | `Record<string, any>` | No |  |
+| `properties` | `Record<string, any>` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -326,7 +326,7 @@ const region = client.Region()
 | --- | --- | --- | --- |
 | `geometry` | `Record<string, any>` | No |  |
 | `id` | `string` | No |  |
-| `property` | `Record<string, any>` | No |  |
+| `properties` | `Record<string, any>` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -379,7 +379,7 @@ const search = client.Search()
 | --- | --- | --- | --- |
 | `geometry` | `Record<string, any>` | No |  |
 | `id` | `string` | No |  |
-| `property` | `Record<string, any>` | No |  |
+| `properties` | `Record<string, any>` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

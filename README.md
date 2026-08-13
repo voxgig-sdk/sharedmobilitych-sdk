@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new SharedmobilitychSDK()
-const asset = await client.Asset().load()
+const asset = await client.Asset().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = SharedmobilitychSDK.test()
-const asset = await client.Asset().load({ id: 'test01' })
-// asset is a bare Asset populated with mock data
-console.log(asset)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = SharedmobilitychSDK.test({
+  entity: {
+    region: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const regions = await client.Region().list()
+// regions is an array of Region entities, populated with mock data
+// — call regions[0].data() for the record itself
+console.log(regions)
 ```
 
 ### Python
 
 ```python
 client = SharedmobilitychSDK.test()
-asset = client.Asset().load({"id": "test01"})
-print(asset)
+regions = client.Region().list()
+print(regions)
 ```
 
 ### PHP
@@ -57,17 +66,17 @@ print(asset)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = SharedmobilitychSDK::test([
-    "entity" => ["asset" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["region" => ["test01" => []]],
 ]);
-$asset = $client->Asset()->load(["id" => "test01"]);
+$regions = $client->Region()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Asset(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+result, err := client.Region(nil).List(
+    nil, nil,
 )
 ```
 
@@ -76,16 +85,16 @@ result, err := client.Asset(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = SharedmobilitychSDK.test({
-  "entity" => { "asset" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "region" => { "test01" => {} } },
 })
-asset = client.Asset.load({ "id" => "test01" })
+regions = client.Region.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Asset():load({ id = "test01" })
+local results, err = client:Region():list()
 ```
 
 ## Packages
@@ -186,7 +195,7 @@ require_once 'sharedmobilitych_sdk.php';
 $client = new SharedmobilitychSDK();
 
 
-// Load a specific asset (returns the bare record; throws on error)
+// Load a specific asset (returns the ENTITY; call data_get() for the record; throws on error)
 $asset = $client->Asset()->load(["id" => "example_id"]);
 print_r($asset);
 ```
@@ -214,7 +223,7 @@ require_relative "Sharedmobilitych_sdk"
 client = SharedmobilitychSDK.new
 
 
-# Load a specific asset (returns the bare record; raises on error)
+# Load a specific asset (returns the ENTITY; call data_get for the record)
 asset = client.Asset.load({ "id" => "example_id" })
 puts asset
 ```
@@ -348,6 +357,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://sharedmobility.ch/api](https://sharedmobility.ch/api)
 

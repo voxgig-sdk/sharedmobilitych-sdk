@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Sharedmobilitych SDK exists test
 
 import pytest
 from sharedmobilitych_sdk import SharedmobilitychSDK

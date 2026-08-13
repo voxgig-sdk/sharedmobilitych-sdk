@@ -49,7 +49,7 @@ describe("AssetEntity", function()
     }
     local asset_ref01_data_dt0_loaded, err = asset_ref01_ent:load(asset_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local asset_ref01_data_dt0_load_result = helpers.to_map(asset_ref01_data_dt0_loaded)
+    local asset_ref01_data_dt0_load_result = helpers.to_map(type(asset_ref01_data_dt0_loaded) == 'table' and asset_ref01_data_dt0_loaded.data_get and asset_ref01_data_dt0_loaded:data_get() or asset_ref01_data_dt0_loaded)
     assert.is_not_nil(asset_ref01_data_dt0_load_result)
     assert.are.equal(asset_ref01_data_dt0_load_result["id"], asset_ref01_data["id"])
 

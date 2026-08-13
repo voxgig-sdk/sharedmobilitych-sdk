@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-asset, err := client.Asset(nil).Load(map[string]any{"id": "example_id"}, nil)
+regions, err := client.Region(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = asset
+_ = regions
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-asset, err := client.Asset(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+region, err := client.Region(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(asset) // the returned mock data
+fmt.Println(region) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -266,7 +266,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | --- | --- |
 | `"geometry"` |  |
 | `"id"` |  |
-| `"property"` |  |
+| `"properties"` |  |
 | `"type"` |  |
 
 Operations: Load.
@@ -306,7 +306,7 @@ API path: `/providers`
 | --- | --- |
 | `"geometry"` |  |
 | `"id"` |  |
-| `"property"` |  |
+| `"properties"` |  |
 | `"type"` |  |
 
 Operations: List.
@@ -319,7 +319,7 @@ API path: `/regions`
 | --- | --- |
 | `"geometry"` |  |
 | `"id"` |  |
-| `"property"` |  |
+| `"properties"` |  |
 | `"type"` |  |
 
 Operations: List.
@@ -347,7 +347,7 @@ Create an instance: `asset := client.Asset(nil)`
 | --- | --- | --- |
 | `geometry` | `map[string]any` |  |
 | `id` | `string` |  |
-| `property` | `map[string]any` |  |
+| `properties` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -438,7 +438,7 @@ Create an instance: `region := client.Region(nil)`
 | --- | --- | --- |
 | `geometry` | `map[string]any` |  |
 | `id` | `string` |  |
-| `property` | `map[string]any` |  |
+| `properties` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -468,7 +468,7 @@ Create an instance: `search := client.Search(nil)`
 | --- | --- | --- |
 | `geometry` | `map[string]any` |  |
 | `id` | `string` |  |
-| `property` | `map[string]any` |  |
+| `properties` | `map[string]any` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -551,15 +551,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-asset := client.Asset(nil)
-asset.Load(map[string]any{"id": "example_id"}, nil)
+region := client.Region(nil)
+region.List(nil, nil)
 
-// asset.Data() now returns the asset data from the last load
-// asset.Match() returns the last match criteria
+// region.Data() now returns the region data from the last list
+// region.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

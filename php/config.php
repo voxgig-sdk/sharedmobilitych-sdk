@@ -50,7 +50,7 @@ class SharedmobilitychConfig
             ],
             [
               'active' => true,
-              'name' => 'property',
+              'name' => 'properties',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 2,
@@ -83,6 +83,7 @@ class SharedmobilitychConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/identify',
                   'parts' => [
@@ -140,6 +141,7 @@ class SharedmobilitychConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/attributes',
                   'parts' => [
@@ -148,7 +150,7 @@ class SharedmobilitychConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.attributes`',
                   ],
                   'index$' => 0,
                 ],
@@ -214,6 +216,7 @@ class SharedmobilitychConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/providers',
                   'parts' => [
@@ -222,7 +225,7 @@ class SharedmobilitychConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.providers`',
                   ],
                   'index$' => 0,
                 ],
@@ -252,7 +255,7 @@ class SharedmobilitychConfig
             ],
             [
               'active' => true,
-              'name' => 'property',
+              'name' => 'properties',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 2,
@@ -274,6 +277,7 @@ class SharedmobilitychConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/regions',
                   'parts' => [
@@ -282,7 +286,7 @@ class SharedmobilitychConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.features`',
                   ],
                   'index$' => 0,
                 ],
@@ -312,7 +316,7 @@ class SharedmobilitychConfig
             ],
             [
               'active' => true,
-              'name' => 'property',
+              'name' => 'properties',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 2,
@@ -377,6 +381,7 @@ class SharedmobilitychConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/find',
                   'parts' => [
@@ -393,7 +398,7 @@ class SharedmobilitychConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.features`',
                   ],
                   'index$' => 0,
                 ],

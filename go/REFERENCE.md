@@ -116,7 +116,7 @@ fmt.Println(asset.GetName()) // "asset"
 | --- | --- | --- | --- |
 | `geometry` | `map[string]any` | No |  |
 | `id` | `string` | No |  |
-| `property` | `map[string]any` | No |  |
+| `properties` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -279,7 +279,7 @@ fmt.Println(region.GetName()) // "region"
 | --- | --- | --- | --- |
 | `geometry` | `map[string]any` | No |  |
 | `id` | `string` | No |  |
-| `property` | `map[string]any` | No |  |
+| `properties` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -333,7 +333,7 @@ fmt.Println(search.GetName()) // "search"
 | --- | --- | --- | --- |
 | `geometry` | `map[string]any` | No |  |
 | `id` | `string` | No |  |
-| `property` | `map[string]any` | No |  |
+| `properties` | `map[string]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
